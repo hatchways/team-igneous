@@ -1,38 +1,35 @@
 "use strict";
 
 var mongoose = require("mongoose"),
-  Profile = mongoose.model("profiles");
+  profile = mongoose.model("profile");
 
 module.exports = {
   list_all_profiles: function (req, res) {
-    Profile.find({}, function (err, profile) {
+    profile.find({}, function (err, result) {
       if (err) res.send(err);
-      res.json(profile);
+      res.json(result);
     });
   },
   create_a_profile: function (req, res) {
-    var new_profile = new Profile(req.body);
-    new_profile.save(function (err, profile) {
+    var new_profile = new profile(req.body);
+    new_profile.save(function (err, result) {
       if (err) res.send(err);
-      res.json(profile);
+      res.json(result);
     });
   },
   list_a_profile: function (req, res) {
-    Profile.findOne(
-      { profileID: req.params.profileID },
-      function (err, profile) {
-        if (err) res.send(err);
-        res.json(profile);
-      }
-    );
+    profile.findOne({ _id: req.params._id }, function (err, result) {
+      if (err) res.send(err);
+      res.json(result);
+    });
   },
   update_a_profile: function (req, res) {
-    Profile.updateOne(
-      { profileId: req.params.profileID },
+    profile.updateOne(
+      { _id: req.params._id },
       req.body,
-      function (err, profile) {
+      function (err, result) {
         if (err) res.send(err);
-        res.json(profile);
+        res.json(result);
       }
     );
   },
