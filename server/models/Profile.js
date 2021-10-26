@@ -3,6 +3,9 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ProfileSchema = new Schema({
+  ProfileID: {
+    type: String,
+  },
   FirstName: {
     type: String,
   },
