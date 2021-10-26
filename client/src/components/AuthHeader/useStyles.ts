@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   authHeader: {
     alignSelf: 'flex-end',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
@@ -11,16 +11,18 @@ const useStyles = makeStyles((theme) => ({
   },
   accAside: {
     fontSize: 14,
-    color: '#b0b0b0',
+    color: 'black',
+    fontFamily: 'sans-serif',
     fontWeight: 400,
     textAlign: 'center',
-    marginRight: 35,
     whiteSpace: 'nowrap',
     display: 'flex',
     alignItems: 'center',
-    padding: '1rem 0',
   },
-  link: { textDecoration: 'none' },
+  link: {
+    color: '#ED3F3F',
+    marginLeft: '2px',
+  },
   accBtn: {
     width: 170,
     height: 54,

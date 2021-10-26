@@ -23,6 +23,10 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontFamily: "'Roboto'",
   },
+  loginWrapper: {
+    margin: '6em auto 0',
+    height: '70vh',
+  },
 }));
 
 export default useStyles;

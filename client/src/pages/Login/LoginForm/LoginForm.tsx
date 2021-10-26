@@ -78,7 +78,8 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             InputProps={{
               classes: { input: classes.inputs },
               disableUnderline: true,
-              endAdornment: <Typography className={classes.forgot}>Forgot?</Typography>,
+              // ticket said to leave this part for now
+              // endAdornment: <Typography className={classes.forgot}>Forgot?</Typography>,
             }}
             type="password"
             autoComplete="current-password"
@@ -93,7 +94,6 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
               {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Login'}
             </Button>
           </Box>
-          <div style={{ height: 95 }} />
         </form>
       )}
     </Formik>
