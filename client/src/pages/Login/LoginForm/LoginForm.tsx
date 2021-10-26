@@ -56,6 +56,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             }}
             InputProps={{
               classes: { input: classes.inputs },
+              disableUnderline: true,
             }}
             name="email"
             autoComplete="email"
@@ -63,6 +64,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             helperText={touched.email ? errors.email : ''}
             error={touched.email && Boolean(errors.email)}
             value={values.email}
+            placeholder="Enter email"
             onChange={handleChange}
           />
           <TextField
@@ -75,6 +77,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             }}
             InputProps={{
               classes: { input: classes.inputs },
+              disableUnderline: true,
               endAdornment: <Typography className={classes.forgot}>Forgot?</Typography>,
             }}
             type="password"
@@ -83,6 +86,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             error={touched.password && Boolean(errors.password)}
             value={values.password}
             onChange={handleChange}
+            placeholder="Enter password"
           />
           <Box textAlign="center">
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>

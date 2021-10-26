@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
+    width: '100%',
   },
   accAside: {
     fontSize: 14,
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     filter: 'drop-shadow(0px 2px 6px rgba(74,106,149,0.2))',
     backgroundColor: '#ffffff',
-    color: '#3a8dff',
+    color: '#ED3F3F',
     boxShadow: 'none',
     marginRight: 35,
   },
