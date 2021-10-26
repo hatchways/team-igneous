@@ -2,22 +2,22 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var ProfileSchema = new Schema({
-  ProfileID: {
+var profileSchema = new Schema({
+  profileID: {
     type: String,
   },
-  FirstName: {
+  firstName: {
     type: String,
   },
-  LastName: {
+  lastName: {
     type: String,
   },
-  Description: {
+  description: {
     type: String,
   },
-  Availability: {
+  availability: {
     type: Boolean,
   },
 });
 
-module.exports = mongoose.model("Profiles", ProfileSchema);
+module.exports = mongoose.model("profiles", profileSchema);
