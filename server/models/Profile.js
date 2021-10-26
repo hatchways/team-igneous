@@ -1,11 +1,8 @@
 "user strict";
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+var schema = mongoose.Schema;
 
-var profileSchema = new Schema({
-  profileID: {
-    type: String,
-  },
+var profileSchema = new schema({
   firstName: {
     type: String,
   },
@@ -20,4 +17,4 @@ var profileSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("profiles", profileSchema);
+module.exports = mongoose.model("profile", profileSchema);
