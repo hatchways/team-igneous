@@ -1,31 +1,65 @@
 "use strict";
 
-var mongoose = require("mongoose"),
-  profile = mongoose.model("profile");
+var profile = require("../models/Profile");
 
+const listAllProfiles = (req, res) => {
+  profile.find({}, function (err, result) {
+    if (err) res.send(err);
+    res.json(result);
+  });
+};
+
+const createProfile = (req, res) => {
+  var new_profile = new profile(req.body);
+  console.log(req.body);
+  new_profile.save(function (err, result) {
+    if (err) res.send(err);
+    res.json(result);
+  });
+};
+
+const listProfile = (req, res) => {
+  profile.findOne({ _id: req.params._id }, function (err, result) {
+    if (err) res.send(err);
+    res.json(result);
+  });
+};
+
+const updateProfile = (req, res) => {
+  profile.updateOne(
+    { _id: req.query.profileID },
+    req.body,
+    function (err, result) {
+      if (err) res.send(err);
+      res.json(result);
+    }
+  );
+};
+/*
 module.exports = {
-  list_all_profiles: function (req, res) {
+  listAllProfiles: function (req, res) {
     profile.find({}, function (err, result) {
       if (err) res.send(err);
       res.json(result);
     });
   },
-  create_a_profile: function (req, res) {
+  createProfile: function (req, res) {
     var new_profile = new profile(req.body);
+    console.log(req.body);
     new_profile.save(function (err, result) {
       if (err) res.send(err);
       res.json(result);
     });
   },
-  list_a_profile: function (req, res) {
+  listProfile: function (req, res) {
     profile.findOne({ _id: req.params._id }, function (err, result) {
       if (err) res.send(err);
       res.json(result);
     });
   },
-  update_a_profile: function (req, res) {
+  updateProfile: function (req, res) {
     profile.updateOne(
-      { _id: req.params._id },
+      { _id: req.query.profileID },
       req.body,
       function (err, result) {
         if (err) res.send(err);
@@ -34,3 +68,6 @@ module.exports = {
     );
   },
 };
+*/
+
+module.exports = { listAllProfiles, listProfile, createProfile, updateProfile };
