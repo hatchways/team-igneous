@@ -35,39 +35,5 @@ const updateProfile = (req, res) => {
     }
   );
 };
-/*
-module.exports = {
-  listAllProfiles: function (req, res) {
-    profile.find({}, function (err, result) {
-      if (err) res.send(err);
-      res.json(result);
-    });
-  },
-  createProfile: function (req, res) {
-    var new_profile = new profile(req.body);
-    console.log(req.body);
-    new_profile.save(function (err, result) {
-      if (err) res.send(err);
-      res.json(result);
-    });
-  },
-  listProfile: function (req, res) {
-    profile.findOne({ _id: req.params._id }, function (err, result) {
-      if (err) res.send(err);
-      res.json(result);
-    });
-  },
-  updateProfile: function (req, res) {
-    profile.updateOne(
-      { _id: req.query.profileID },
-      req.body,
-      function (err, result) {
-        if (err) res.send(err);
-        res.json(result);
-      }
-    );
-  },
-};
-*/
 
 module.exports = { listAllProfiles, listProfile, createProfile, updateProfile };
