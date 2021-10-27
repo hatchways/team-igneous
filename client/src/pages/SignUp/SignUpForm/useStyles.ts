@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     backgroundColor: theme.palette.primary.main,
     fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
+  circle: {
+    color: 'white',
   },
 }));
 

@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
     fontWeight: 'bold',
   },
+  circle: {
+    color: 'white',
+  },
 }));
 
 export default useStyles;

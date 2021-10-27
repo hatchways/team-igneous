@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     color: 'black',
     fontFamily: 'sans-serif',
-    fontWeight: 400,
+    fontWeight: 'bold',
     textAlign: 'center',
     whiteSpace: 'nowrap',
     display: 'flex',
@@ -22,16 +22,6 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.main,
     marginLeft: '2px',
-  },
-  accBtn: {
-    width: 170,
-    height: 54,
-    borderRadius: theme.shape.borderRadius,
-    filter: 'drop-shadow(0px 2px 6px rgba(74,106,149,0.2))',
-    backgroundColor: '#ffffff',
-    color: theme.palette.primary.main,
-    boxShadow: 'none',
-    marginRight: 35,
   },
 }));
 
