@@ -36,7 +36,7 @@ const createProfile = (req, res) => {
 };
 
 const getProfile = (req, res) => {
-  profile.findOne({ _id: req.params._id }, function (err, result) {
+  profile.findOne({ _id: req.params.profileID }, function (err, result) {
     if (err) res.send(err);
     res.json(result);
   });
