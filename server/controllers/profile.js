@@ -1,6 +1,6 @@
 "use strict";
 
-var profile = require("../models/Profile");
+const profile = require("../models/Profile");
 
 const getAllProfiles = (req, res) => {
   profile.find({}, function (err, result) {
