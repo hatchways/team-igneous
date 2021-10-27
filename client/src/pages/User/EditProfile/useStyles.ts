@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    alignContent: 'flex-start',
     flexDirection: 'column',
   },
   link: {
@@ -58,9 +59,24 @@ const useStyles = makeStyles(() => ({
   },
   textField: {
     marginBottom: '1rem',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
 
   textFieldTitle: {
+    fontSize: '1rem',
+    fontWeight: 700,
+    fontFamily: '"sans-serif"',
+  },
+
+  saveButton: {
+    backgroundColor: 'red',
+    color: 'white',
+    marginBottom: '1rem',
+    width: '10rem',
+    height: '2.5rem',
     fontSize: '1rem',
     fontWeight: 700,
     fontFamily: '"sans-serif"',
