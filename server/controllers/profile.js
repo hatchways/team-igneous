@@ -2,7 +2,7 @@
 
 var profile = require("../models/Profile");
 
-const listAllProfiles = (req, res) => {
+const getAllProfiles = (req, res) => {
   profile.find({}, function (err, result) {
     if (err) res.send(err);
     res.json(result);
@@ -10,15 +10,32 @@ const listAllProfiles = (req, res) => {
 };
 
 const createProfile = (req, res) => {
-  var new_profile = new profile(req.body);
-  console.log(req.body);
-  new_profile.save(function (err, result) {
+  const { firstName, lastName, description, availability } = req.body;
+  if (firstName && typeof firstName !== "string") {
+    res.status(404);
+    throw new Error("Provide input as a String for firstName");
+  }
+  if (lastName && typeof lastName !== "string") {
+    res.status(404);
+    throw new Error("Provide input as a String for lastName");
+  }
+  if (description && typeof description !== "string") {
+    res.status(404);
+    throw new Error("Provide input as a String for description");
+  }
+  if (availability && typeof availability !== "boolean") {
+    res.status(404);
+    throw new Error("Provide input as a Boolean for availability");
+  }
+
+  let newProfile = new profile(req.body);
+  newProfile.save(function (err, result) {
     if (err) res.send(err);
     res.json(result);
   });
 };
 
-const listProfile = (req, res) => {
+const getProfile = (req, res) => {
   profile.findOne({ _id: req.params._id }, function (err, result) {
     if (err) res.send(err);
     res.json(result);
@@ -36,4 +53,4 @@ const updateProfile = (req, res) => {
   );
 };
 
-module.exports = { listAllProfiles, listProfile, createProfile, updateProfile };
+module.exports = { getAllProfiles, getProfile, createProfile, updateProfile };
