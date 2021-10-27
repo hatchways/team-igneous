@@ -62,7 +62,7 @@ export default function EditProfile(): JSX.Element {
           <Typography className={classes.textFieldTitle} component="h1">
             EMAIL ADDRESS
           </Typography>
-          <TextField label="Email Address" variant="outlined" focused />
+          <TextField label="Email Address" variant="outlined" focused placeholder="user@gmail.com" />
         </Box>
         <Box className={classes.textField}>
           <Typography className={classes.textFieldTitle} component="h1">
@@ -74,20 +74,20 @@ export default function EditProfile(): JSX.Element {
           <Typography className={classes.textFieldTitle} component="h1">
             PHONE NUMBER
           </Typography>
-          <TextField label="Phone Number" variant="outlined" focused />
+          <TextField label="Phone Number" variant="outlined" focused placeholder="Phone Number" />
         </Box>
         <Box className={classes.textField}>
           <Typography className={classes.textFieldTitle} component="h1">
             WHERE YOU LIVE
           </Typography>
-          <TextField label="Address" variant="outlined" focused />
+          <TextField label="Address" variant="outlined" focused placeholder="Address" />
         </Box>
-        <Box className={classes.textField}>
-          <Typography className={classes.textFieldTitle} component="h1">
-            DESCRIBE YOURSELF
-          </Typography>
-          <TextField label="About You" variant="outlined" focused />
-        </Box>
+        {/* <Box className={classes.textField}> */}
+        <Typography className={classes.textFieldTitle} component="h1">
+          DESCRIBE YOURSELF
+        </Typography>
+        <TextField label="About You" variant="outlined" focused placeholder="About you" />
+        {/* </Box> */}
         <Box>
           <Button className={classes.saveButton}>SAVE</Button>
         </Box>
