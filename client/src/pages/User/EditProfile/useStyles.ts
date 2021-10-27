@@ -22,11 +22,10 @@ const useStyles = makeStyles(() => ({
   content: {
     color: 'black',
     minHeight: '100%',
-    display: 'flex',
-    justifyContent: 'center',
+    display: 'flex-wrap',
     alignItems: 'center',
     alignContent: 'flex-start',
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
   link: {
     textDecoration: 'none',
@@ -57,20 +56,22 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
   },
-  textField: {
+  textFieldBox: {
     marginBottom: '1rem',
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
-
+  textFieldBoxItems: {
+    display: 'flex',
+    alignItems: 'center',
+    marginRight: '40%',
+  },
   textFieldTitle: {
     fontSize: '1rem',
     fontWeight: 700,
     fontFamily: '"sans-serif"',
   },
-
   saveButton: {
     backgroundColor: 'red',
     color: 'white',
@@ -80,6 +81,10 @@ const useStyles = makeStyles(() => ({
     fontSize: '1rem',
     fontWeight: 700,
     fontFamily: '"sans-serif"',
+  },
+  saveButtonBox: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 
