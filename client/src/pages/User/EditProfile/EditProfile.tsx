@@ -50,46 +50,46 @@ export default function EditProfile(): JSX.Element {
           <Typography className={classes.textFieldTitle} component="h1">
             FIRST NAME
           </Typography>
-          <TextField label="Outlined" variant="outlined" focused />
+          <TextField label="First Name" variant="outlined" focused />
         </Box>
         <Box className={classes.textField}>
           <Typography className={classes.textFieldTitle} component="h1">
             LAST NAME
           </Typography>
-          <TextField label="Outlined" variant="outlined" focused />
+          <TextField label="Last Name" variant="outlined" focused />
         </Box>
-        <Box className={classes.textFieldTitle}>
+        <Box className={classes.textField}>
           <Typography className={classes.textFieldTitle} component="h1">
             EMAIL ADDRESS
           </Typography>
-          <TextField label="Outlined" variant="outlined" focused />
+          <TextField label="Email Address" variant="outlined" focused />
         </Box>
-        <Box className={classes.textFieldTitle}>
+        <Box className={classes.textField}>
           <Typography className={classes.textFieldTitle} component="h1">
             CITY
           </Typography>
-          <TextField label="Outlined" variant="outlined" focused />
+          <TextField label="City" variant="outlined" focused />
         </Box>
-        <Box className={classes.textFieldTitle}>
+        <Box className={classes.textField}>
           <Typography className={classes.textFieldTitle} component="h1">
             PHONE NUMBER
           </Typography>
-          <TextField label="Outlined" variant="outlined" focused />
+          <TextField label="Phone Number" variant="outlined" focused />
         </Box>
-        <Box className={classes.textFieldTitle}>
+        <Box className={classes.textField}>
           <Typography className={classes.textFieldTitle} component="h1">
             WHERE YOU LIVE
           </Typography>
-          <TextField label="Outlined" variant="outlined" focused />
+          <TextField label="Address" variant="outlined" focused />
         </Box>
-        <Box className={classes.textFieldTitle}>
+        <Box className={classes.textField}>
           <Typography className={classes.textFieldTitle} component="h1">
             DESCRIBE YOURSELF
           </Typography>
-          <TextField label="Outlined" variant="outlined" focused />
+          <TextField label="About You" variant="outlined" focused />
         </Box>
         <Box>
-          <Button>SAVE</Button>
+          <Button className={classes.saveButton}>SAVE</Button>
         </Box>
       </Grid>
     </Grid>
