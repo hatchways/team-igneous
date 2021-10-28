@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './useStyles';
+import Paper from '@material-ui/core/Paper';
 
 export default function SideNav(): JSX.Element {
   const classes = useStyles();
@@ -26,4 +27,4 @@ export default function SideNav(): JSX.Element {
       </Link>
     </Grid>
   );
-};
+}

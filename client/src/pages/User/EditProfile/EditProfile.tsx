@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import SideNav from '../../../components/SideNav/SideNav';
+import AuthMenu from '../../../components/AuthMenu/AuthMenu';
 
 export default function EditProfile(): JSX.Element {
   const classes = useStyles();
@@ -14,6 +15,7 @@ export default function EditProfile(): JSX.Element {
   return (
     <Grid container component="main" className={`${classes.root}`}>
       <CssBaseline />
+      <AuthMenu />
       <SideNav />
       <Grid item xs={7} sm={8} md={9} component={Paper} className={classes.content}>
         <Typography className={classes.title} component="h1">
