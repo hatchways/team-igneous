@@ -1,5 +1,4 @@
 import useStyles from './useStyles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
@@ -15,7 +14,6 @@ export default function EditProfile(): JSX.Element {
 
   return (
     <Grid container component="main" className={`${classes.root}`}>
-      <CssBaseline />
       <Grid item xs={5} sm={4} md={3} component={Paper} className={classes.sideBar}>
         <Link
           to="/user/edit-profile"
