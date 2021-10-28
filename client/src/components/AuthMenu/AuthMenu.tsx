@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
 import { Link } from 'react-router-dom';
 import useStyles from './useStyles';
+import Logo from '../../Images/logo.png';
 
 const AuthMenu = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -38,7 +39,7 @@ const AuthMenu = (): JSX.Element => {
       <IconButton aria-label="show auth menu" aria-controls="auth-menu" aria-haspopup="true" onClick={handleClick}>
         {loggedInUser && <AvatarDisplay loggedIn user={loggedInUser} />}
       </IconButton>
-      <img src="../../Images/logo.png" alt="logo" />
+      <img src={Logo} alt="logo" />
       <Link to="/user/messages" className={classes.link}>
         Messages
       </Link>
