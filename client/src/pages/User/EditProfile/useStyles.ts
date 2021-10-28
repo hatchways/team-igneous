@@ -71,6 +71,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '1rem',
     fontWeight: 700,
     fontFamily: '"sans-serif"',
+    textTransform: 'uppercase',
   },
   saveButton: {
     backgroundColor: 'red',
