@@ -7,6 +7,7 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
 export default function Messages(): JSX.Element {
   const classes = useStyles();
@@ -23,13 +24,12 @@ export default function Messages(): JSX.Element {
   if (loggedInUser === undefined) return <CircularProgress />;
   if (!loggedInUser) {
     history.push('/login');
-    // loading for a split seconds until history.push works
     return <CircularProgress />;
   }
   return (
     <Grid container component="main">
       <AuthMenu />
-      <h1>Messages</h1>;
+      <Typography component="h1">Messages</Typography>
       <ChatSideBanner loggedInUser={loggedInUser} />
     </Grid>
   );

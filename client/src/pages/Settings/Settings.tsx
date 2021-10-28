@@ -2,6 +2,7 @@ import useStyles from './useStyles';
 import AuthMenu from '../../components/AuthMenu/AuthMenu';
 import Grid from '@material-ui/core/Grid';
 import SideNav from '../../components/SideNav/SideNav';
+import Typography from '@material-ui/core/Typography';
 
 export default function Settings(): JSX.Element {
   const classes = useStyles();
@@ -9,7 +10,7 @@ export default function Settings(): JSX.Element {
     <Grid container component="main">
       <AuthMenu />
       <SideNav />
-      <h1>Settings</h1>;
+      <Typography component="h1">Settings</Typography>
     </Grid>
   );
 }

@@ -37,7 +37,7 @@ const AuthMenu = (): JSX.Element => {
   return (
     <div>
       <IconButton aria-label="show auth menu" aria-controls="auth-menu" aria-haspopup="true" onClick={handleClick}>
-        {loggedInUser && <AvatarDisplay loggedIn user={loggedInUser} />}
+        {!!loggedInUser && <AvatarDisplay loggedIn user={loggedInUser} />}
       </IconButton>
       <img src={Logo} alt="logo" />
       <Link to="/user/messages" className={classes.link}>
