@@ -5,7 +5,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
-    padding: '10%',
+    padding: '10rem',
   },
   sideBar: {
     position: 'relative',
@@ -65,7 +65,7 @@ const useStyles = makeStyles(() => ({
   textFieldBoxItems: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: '40%',
+    marginRight: '30rem',
   },
   textFieldTitle: {
     fontSize: '1rem',
