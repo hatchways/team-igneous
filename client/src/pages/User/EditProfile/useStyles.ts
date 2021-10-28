@@ -68,9 +68,6 @@ const useStyles = makeStyles(() => ({
     marginRight: '30rem',
   },
   textFieldTitle: {
-    fontSize: '1rem',
-    fontWeight: 700,
-    fontFamily: '"sans-serif"',
     textTransform: 'uppercase',
   },
   saveButton: {
