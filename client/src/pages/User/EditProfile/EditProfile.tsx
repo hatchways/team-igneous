@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -46,7 +46,7 @@ export default function EditProfile(): JSX.Element {
         </Typography>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h3">
+            <Typography className={classes.textFieldTitle} variant="h3">
               first name
             </Typography>
             <TextField label="First Name" variant="outlined" focused />
@@ -54,7 +54,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h3">
+            <Typography className={classes.textFieldTitle} variant="h3">
               last name
             </Typography>
             <TextField label="Last Name" variant="outlined" focused />
@@ -62,7 +62,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h3">
+            <Typography className={classes.textFieldTitle} variant="h3">
               email address
             </Typography>
             <TextField label="Email Address" variant="outlined" focused placeholder="user@gmail.com" />
@@ -70,7 +70,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h3">
+            <Typography className={classes.textFieldTitle} variant="h3">
               city
             </Typography>
             <TextField label="City" variant="outlined" focused />
@@ -78,7 +78,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h3">
+            <Typography className={classes.textFieldTitle} variant="h3">
               phone number
             </Typography>
             <TextField label="Phone Number" variant="outlined" focused placeholder="Phone Number" />
@@ -86,7 +86,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h3">
+            <Typography className={classes.textFieldTitle} variant="h3">
               where you live
             </Typography>
             <TextField label="Address" variant="outlined" focused placeholder="Address" />
@@ -94,7 +94,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h3">
+            <Typography className={classes.textFieldTitle} variant="h3">
               describe yourself
             </Typography>
             <TextField label="About You" variant="outlined" focused placeholder="About you" />
