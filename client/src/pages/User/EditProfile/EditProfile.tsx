@@ -46,7 +46,7 @@ export default function EditProfile(): JSX.Element {
         </Typography>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h1">
+            <Typography className={classes.textFieldTitle} component="h3">
               FIRST NAME
             </Typography>
             <TextField label="First Name" variant="outlined" focused />
@@ -54,7 +54,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h1">
+            <Typography className={classes.textFieldTitle} component="h3">
               LAST NAME
             </Typography>
             <TextField label="Last Name" variant="outlined" focused />
@@ -62,7 +62,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h1">
+            <Typography className={classes.textFieldTitle} component="h3">
               EMAIL ADDRESS
             </Typography>
             <TextField label="Email Address" variant="outlined" focused placeholder="user@gmail.com" />
@@ -70,7 +70,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h1">
+            <Typography className={classes.textFieldTitle} component="h3">
               CITY
             </Typography>
             <TextField label="City" variant="outlined" focused />
@@ -78,7 +78,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h1">
+            <Typography className={classes.textFieldTitle} component="h3">
               PHONE NUMBER
             </Typography>
             <TextField label="Phone Number" variant="outlined" focused placeholder="Phone Number" />
@@ -86,7 +86,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h1">
+            <Typography className={classes.textFieldTitle} component="h3">
               WHERE YOU LIVE
             </Typography>
             <TextField label="Address" variant="outlined" focused placeholder="Address" />
@@ -94,7 +94,7 @@ export default function EditProfile(): JSX.Element {
         </Box>
         <Box className={classes.textFieldBox}>
           <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} component="h1">
+            <Typography className={classes.textFieldTitle} component="h3">
               DESCRIBE YOURSELF
             </Typography>
             <TextField label="About You" variant="outlined" focused placeholder="About you" />
