@@ -7,28 +7,35 @@ const useStyles = makeStyles((theme) => ({
   },
   label: {
     fontSize: 19,
-    color: 'rgb(0,0,0,0.4)',
+    color: 'black',
+    fontWeight: 'bold',
     paddingLeft: '5px',
+    textTransform: 'uppercase',
   },
   inputs: {
     marginTop: '.8rem',
     height: '2rem',
-    padding: '5px',
+    padding: '12px',
+    border: '1px solid lightgrey',
+    borderRadius: '5px',
   },
   forgot: {
     paddingRight: 10,
-    color: '#3a8dff',
+    color: theme.palette.primary.main,
   },
   submit: {
     margin: theme.spacing(3, 2, 2),
     padding: 10,
     width: 160,
     height: 56,
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: theme.palette.primary.main,
     marginTop: 49,
     fontSize: 16,
-    backgroundColor: '#3a8dff',
+    backgroundColor: theme.palette.primary.main,
     fontWeight: 'bold',
+  },
+  circle: {
+    color: 'white',
   },
 }));
 

@@ -8,7 +8,7 @@ import EditProfile from './pages/User/EditProfile/EditProfile';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
 import ProfilePicture from './pages/ProfilePicture/ProfilePicture';
 import Payment from './pages/Payment/Payment';
@@ -20,6 +20,7 @@ import Messages from './pages/Messages/Messages';
 function App(): JSX.Element {
   return (
     <MuiThemeProvider theme={theme}>
+      <CssBaseline />
       <BrowserRouter>
         <SnackBarProvider>
           <AuthProvider>
