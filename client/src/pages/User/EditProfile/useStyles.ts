@@ -5,19 +5,19 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
-    padding: '10rem',
+    padding: '8rem 10rem 2rem 5rem',
   },
   sideBar: {
     flexDirection: 'column',
     color: 'grey',
   },
   content: {
-    color: 'black',
-    minHeight: '100%',
-    display: 'flex-wrap',
+    display: 'flex',
     alignItems: 'center',
-    alignContent: 'flex-start',
-    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  innerContentContainer: {
+    display: 'flex',
   },
   link: {
     textDecoration: 'none',
@@ -38,28 +38,34 @@ const useStyles = makeStyles(() => ({
   activeLink: {
     color: 'black',
   },
+  titleContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   title: {
     color: 'black',
     fontWeight: 700,
     fontSize: '2rem',
     fontFamily: '"sans-serif"',
     margin: '2rem',
-    display: 'flex',
-    justifyContent: 'center',
   },
   textFieldBox: {
     marginBottom: '1rem',
     display: 'flex',
+    flexWrap: 'nowrap',
     justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  textFieldBoxItems: {
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: '30rem',
   },
   textFieldTitle: {
     textTransform: 'uppercase',
+    minWidth: '30%',
+    paddingRight: '1rem',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    overflow: 'hidden',
+  },
+  textField: {
+    minWidth: '80%',
   },
   saveButton: {
     backgroundColor: 'red',
