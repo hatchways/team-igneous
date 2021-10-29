@@ -33,13 +33,10 @@ const useStyles = makeStyles(() => ({
     },
     '&:hover': {
       color: 'black',
-      '&:visited': {
-        color: 'black',
-      },
     },
-    '&:visited': {
-      color: 'grey',
-    },
+  },
+  activeLink: {
+    color: 'black',
   },
   title: {
     color: 'black',
