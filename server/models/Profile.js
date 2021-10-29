@@ -1,8 +1,8 @@
-"user strict";
-var mongoose = require("mongoose");
-var schema = mongoose.Schema;
+'user strict';
 
-var profileSchema = new schema({
+const mongoose = require('mongoose');
+
+const profileSchema = new mongoose.Schema({
   firstName: {
     type: String,
   },
@@ -17,4 +17,4 @@ var profileSchema = new schema({
   },
 });
 
-module.exports = mongoose.model("profile", profileSchema);
+module.exports = mongoose.model('profile', profileSchema);
