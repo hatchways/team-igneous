@@ -57,7 +57,7 @@ export default function EditProfile(): JSX.Element {
           spacing={1}
         >
           <Grid item container className={classes.titleContainer}>
-            <Typography className={classes.title} component="h1">
+            <Typography className={classes.title} variant="h1">
               {title}
             </Typography>
           </Grid>
