@@ -9,11 +9,25 @@ const profileSchema = new mongoose.Schema({
   lastName: {
     type: String,
   },
-  description: {
+  gender: {
     type: String,
   },
-  availability: {
-    type: Boolean,
+  birthday: {
+    type: Date,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  phoneNumber: {
+    type: String,
+  },
+  address: {
+    type: String,
+  },
+  description: {
+    type: String,
   },
 });
 
