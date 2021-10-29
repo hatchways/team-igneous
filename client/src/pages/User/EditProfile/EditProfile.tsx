@@ -13,8 +13,9 @@ export default function EditProfile(): JSX.Element {
   const [title, setTitle] = useState('Edit Profile');
 
   return (
-    <Grid container component="main" className={`${classes.root}`}>
-      <Grid item xs={5} sm={4} md={3} component={Paper} className={classes.sideBar}>
+    <Grid container component="main" className={classes.root} xs={12}>
+      {/*component={Paper}*/}
+      <Grid item xs={2} sm={2} md={2} lg={2} xl={2} container className={classes.sideBar} direction="column">
         <Link
           to="/user/edit-profile"
           className={classes.link}
