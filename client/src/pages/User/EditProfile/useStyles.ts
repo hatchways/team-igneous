@@ -64,8 +64,60 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'flex-end',
     overflow: 'hidden',
   },
+  dropDownDateContainer: {
+    minWidth: '80%',
+    display: 'flex-wrap',
+    justifyContent: 'space-between',
+  },
+  dropDownGenderContainer: {
+    minWidth: '80%',
+    display: 'flex-start',
+    justifyContent: 'flex-start',
+  },
+  dropDownGender: {
+    minWidth: '40%',
+  },
+  dropDownMonth: {
+    minWidth: '40%',
+  },
+  dropDownDay: {
+    minWidth: '28%',
+  },
+  dropDownYear: {
+    minWidth: '28%',
+  },
   textField: {
     minWidth: '80%',
+  },
+  textFieldPhoneTitle: {
+    textTransform: 'uppercase',
+    maxWidth: '30%',
+    paddingRight: '1rem',
+    marginTop: '1.3rem',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    overflow: 'hidden',
+  },
+  textFieldPhoneNumber: {
+    maxWidth: '40%',
+    color: 'red',
+    opacity: 1,
+  },
+  MuiInputBase: {
+    color: 'red',
+  },
+  phoneNumberWarning: {
+    color: 'black',
+    fontSize: '1rem',
+    fontFamily: '"Open Sans", "sans-serif", "Roboto"',
+    fontWeight: 700,
+    fontStyle: 'italic',
+  },
+  phoneNumberWarningBox: {
+    marginRight: '6rem',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   saveButton: {
     backgroundColor: 'red',
