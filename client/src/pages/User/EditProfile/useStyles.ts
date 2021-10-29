@@ -7,18 +7,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row',
     padding: '10rem',
   },
-  sideBar: {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    color: 'grey',
-    minHeight: '100%',
-    background: 'transparent',
-    border: 'hidden',
-    boxShadow: 'none',
-  },
   content: {
     color: 'black',
     minHeight: '100%',
@@ -26,26 +14,6 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     alignContent: 'flex-start',
     flexDirection: 'row',
-  },
-  link: {
-    textDecoration: 'none',
-    marginBottom: '2rem',
-    fontSize: '1rem',
-    fontFamily: '"Open Sans", "sans-serif", "Roboto"',
-    fontWeight: 700,
-    color: 'grey',
-
-    '&:hover': {
-      color: 'black',
-
-      '&:visited': {
-        color: 'black',
-      },
-    },
-
-    '&:visited': {
-      color: 'grey',
-    },
   },
   title: {
     color: 'black',
