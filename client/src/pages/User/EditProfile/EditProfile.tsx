@@ -43,81 +43,99 @@ export default function EditProfile(): JSX.Element {
           Settings
         </NavLink>
       </Grid>
-      <Grid
-        item
-        xs={10}
-        sm={10}
-        md={10}
-        lg={10}
-        xl={10}
-        container
-        component={Paper}
-        className={classes.content}
-        direction="column"
-      >
-        <Grid item container>
-          <Typography className={classes.title} component="h1">
-            {title}
-          </Typography>
-        </Grid>
-        <Grid item container className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
+      <Grid item xs={8} sm={8} md={8} lg={8} xl={8} container component={Paper} className={classes.content}>
+        <Grid
+          item
+          xs={7}
+          sm={7}
+          md={7}
+          lg={7}
+          xl={7}
+          container
+          direction="column"
+          className={classes.innerContentContainer}
+          spacing={1}
+        >
+          <Grid item container className={classes.titleContainer}>
+            <Typography className={classes.title} component="h1">
+              {title}
+            </Typography>
+          </Grid>
+          <Grid item container className={classes.textFieldBox}>
             <Typography className={classes.textFieldTitle} variant="h3">
               first name
             </Typography>
-            <TextField label="First Name" variant="outlined" focused />
-          </Box>
-        </Grid>
-        <Grid item container className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
+            <TextField
+              label="First Name"
+              variant="outlined"
+              focused
+              className={classes.textField}
+              placeholder="Frst Name"
+            />
+          </Grid>
+          <Grid item container className={classes.textFieldBox}>
             <Typography className={classes.textFieldTitle} variant="h3">
               last name
             </Typography>
-            <TextField label="Last Name" variant="outlined" focused />
-          </Box>
-        </Grid>
-        <Grid item container className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
+            <TextField
+              label="Last Name"
+              variant="outlined"
+              focused
+              className={classes.textField}
+              placeholder="Last Name"
+            />
+          </Grid>
+          <Grid item container className={classes.textFieldBox}>
             <Typography className={classes.textFieldTitle} variant="h3">
               email address
             </Typography>
-            <TextField label="Email Address" variant="outlined" focused placeholder="user@gmail.com" />
-          </Box>
-        </Grid>
-        <Grid item container className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
+            <TextField
+              label="Email Address"
+              variant="outlined"
+              focused
+              className={classes.textField}
+              placeholder="user@gmail.com"
+            />
+          </Grid>
+          <Grid item container className={classes.textFieldBox}>
             <Typography className={classes.textFieldTitle} variant="h3">
               city
             </Typography>
-            <TextField label="City" variant="outlined" focused />
-          </Box>
-        </Grid>
-        <Grid item container className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
+            <TextField label="City" variant="outlined" focused className={classes.textField} placeholder="City" />
+          </Grid>
+          <Grid item container className={classes.textFieldBox}>
             <Typography className={classes.textFieldTitle} variant="h3">
               phone number
             </Typography>
-            <TextField label="Phone Number" variant="outlined" focused placeholder="Phone Number" />
-          </Box>
-        </Grid>
-        <Grid item container className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
+            <TextField
+              label="Phone Number"
+              variant="outlined"
+              focused
+              className={classes.textField}
+              placeholder="Phone Number"
+            />
+          </Grid>
+          <Grid item container className={classes.textFieldBox}>
             <Typography className={classes.textFieldTitle} variant="h3">
               where you live
             </Typography>
-            <TextField label="Address" variant="outlined" focused placeholder="Address" />
-          </Box>
-        </Grid>
-        <Grid item container className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
+            <TextField label="Address" variant="outlined" focused className={classes.textField} placeholder="Address" />
+          </Grid>
+          <Grid item container className={classes.textFieldBox}>
             <Typography className={classes.textFieldTitle} variant="h3">
               describe yourself
             </Typography>
-            <TextField label="About You" variant="outlined" focused placeholder="About you" />
-          </Box>
-        </Grid>
-        <Grid item container className={classes.saveButtonBox}>
-          <Button className={classes.saveButton}>SAVE</Button>
+            <TextField
+              label="About You"
+              variant="outlined"
+              focused
+              className={classes.textField}
+              placeholder="About you"
+            />
+          </Grid>
+          <Grid item container className={classes.saveButtonBox}>
+            <Button className={classes.saveButton}>SAVE</Button>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
