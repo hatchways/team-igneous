@@ -8,16 +8,8 @@ const useStyles = makeStyles(() => ({
     padding: '10rem',
   },
   sideBar: {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     flexDirection: 'column',
     color: 'grey',
-    minHeight: '100%',
-    background: 'transparent',
-    border: 'hidden',
-    boxShadow: 'none',
   },
   content: {
     color: 'black',
@@ -29,20 +21,22 @@ const useStyles = makeStyles(() => ({
   },
   link: {
     textDecoration: 'none',
-    marginBottom: '2rem',
     fontSize: '1rem',
     fontFamily: '"Open Sans", "sans-serif", "Roboto"',
     fontWeight: 700,
     color: 'grey',
-
+    '&:first-child': {
+      marginTop: '2rem',
+    },
+    '&:not(:last-child)': {
+      marginBottom: '2rem',
+    },
     '&:hover': {
       color: 'black',
-
       '&:visited': {
         color: 'black',
       },
     },
-
     '&:visited': {
       color: 'grey',
     },
