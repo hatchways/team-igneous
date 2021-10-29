@@ -4,15 +4,9 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-<<<<<<< HEAD
 import Typography from '@material-ui/core/Typography';
 import SideNav from '../../../components/SideNav/SideNav';
 import AuthMenu from '../../../components/AuthMenu/AuthMenu';
-=======
-import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
->>>>>>> 52eb0b573acece8fbff2ea22f1a0d6ded488c989
 
 export default function EditProfile(): JSX.Element {
   const classes = useStyles();
