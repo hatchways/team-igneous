@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function EditProfile(): JSX.Element {
@@ -16,30 +16,32 @@ export default function EditProfile(): JSX.Element {
     <Grid container component="main" className={classes.root} xs={12}>
       {/*component={Paper}*/}
       <Grid item xs={2} sm={2} md={2} lg={2} xl={2} container className={classes.sideBar} direction="column">
-        <Link
+        <NavLink
+          exact
           to="/user/edit-profile"
           className={classes.link}
+          activeClassName={classes.activeLink}
           onClick={() => {
             setTitle('Edit Profile');
           }}
         >
           Edit Profile
-        </Link>
-        <Link to="/user/profile-photo" className={classes.link}>
+        </NavLink>
+        <NavLink exact to="/user/profile-photo" className={classes.link} activeClassName={classes.activeLink}>
           Profile Photo
-        </Link>
-        <Link to="/user/image-gallery" className={classes.link}>
+        </NavLink>
+        <NavLink exact to="/user/image-gallery" className={classes.link} activeClassName={classes.activeLink}>
           Image Gallery
-        </Link>
-        <Link to="/user/payment" className={classes.link}>
+        </NavLink>
+        <NavLink exact to="/user/payment" className={classes.link} activeClassName={classes.activeLink}>
           Payment
-        </Link>
-        <Link to="/user/security" className={classes.link}>
+        </NavLink>
+        <NavLink exact to="/user/security" className={classes.link} activeClassName={classes.activeLink}>
           Security
-        </Link>
-        <Link to="/user/settings" className={classes.link}>
+        </NavLink>
+        <NavLink exact to="/user/settings" className={classes.link} activeClassName={classes.activeLink}>
           Settings
-        </Link>
+        </NavLink>
       </Grid>
       <Grid item xs={7} sm={8} md={9} component={Paper} className={classes.content}>
         <Typography className={classes.title} component="h1">
