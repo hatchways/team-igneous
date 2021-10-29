@@ -15,6 +15,8 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: -1,
+    overflow: 'hidden',
   },
   innerContentContainer: {
     display: 'flex',
@@ -57,6 +59,7 @@ const useStyles = makeStyles(() => ({
     textTransform: 'uppercase',
     minWidth: '30%',
     paddingRight: '1rem',
+    marginTop: '1.3rem',
     display: 'flex',
     justifyContent: 'flex-end',
     overflow: 'hidden',
