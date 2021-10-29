@@ -14,13 +14,18 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     minHeight: '100vh',
     paddingTop: 23,
+    margin: '0 auto',
   },
   welcome: {
     fontSize: 26,
     paddingBottom: 20,
     color: '#000000',
     fontWeight: 700,
-    fontFamily: "'Open Sans'",
+    fontFamily: "'Roboto'",
+  },
+  loginWrapper: {
+    margin: '6em auto 0',
+    height: '70vh',
   },
 }));
 
