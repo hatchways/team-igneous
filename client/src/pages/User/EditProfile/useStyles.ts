@@ -45,9 +45,6 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     color: 'black',
-    fontWeight: 700,
-    fontSize: '2rem',
-    fontFamily: '"sans-serif"',
     margin: '2rem',
   },
   textFieldBox: {
