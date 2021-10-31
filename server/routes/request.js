@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { userRequests, createRequests, updateRequests } = require("../controllers/request");
+const { userRequests, createRequest, updateRequest } = require("../controllers/request");
 
 router.route("/requests").get(userRequests)
 router.route("/requests/new").post(createRequest)
