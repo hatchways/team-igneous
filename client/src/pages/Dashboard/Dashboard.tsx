@@ -31,7 +31,7 @@ export default function Dashboard(): JSX.Element {
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
       <Grid item className={classes.drawerWrapper}>
-        <EditProfile />
+        <EditProfile loggedInUser={loggedInUser} />
       </Grid>
     </Grid>
   );

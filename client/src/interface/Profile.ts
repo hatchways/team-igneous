@@ -11,5 +11,4 @@ export interface Profile {
 
 export interface SearchProfilesApiData {
   profile?: Profile[];
-  error?: { message: string };
 }

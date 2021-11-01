@@ -4,22 +4,41 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-<<<<<<< HEAD
 import Typography from '@material-ui/core/Typography';
 import SideNav from '../../../components/SideNav/SideNav';
 import AuthMenu from '../../../components/AuthMenu/AuthMenu';
-=======
-import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
->>>>>>> 52eb0b573acece8fbff2ea22f1a0d6ded488c989
+import { useEffect } from 'react';
+import { User } from '../../../interface/User';
+import { FetchOptions } from '../../../interface/FetchOptions';
 
-export default function EditProfile(): JSX.Element {
+interface Props {
+  loggedInUser: User;
+}
+
+export default function EditProfile({ loggedInUser }: Props): JSX.Element {
   const classes = useStyles();
+  const profile = loggedInUser.profile;
+  const getProfile = async (profile: string) => {
+    const fetchOptions: FetchOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    };
+    await fetch(`/profile/${profile}`, fetchOptions)
+      .then((res) => res.json())
+      .then((data) => console.log(data.success.profile.firstName))
+      .catch(() => ({
+        error: { message: 'Unable to connect to server. Please try again' },
+      }));
+  };
+  useEffect(() => {
+    if (profile) {
+      getProfile(profile);
+    }
+  }, [profile]);
 
   return (
     <Grid container component="main" className={`${classes.root}`}>
-      <CssBaseline />
       <AuthMenu />
       <SideNav />
       <Grid item xs={7} sm={8} md={9} component={Paper} className={classes.content}>

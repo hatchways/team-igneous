@@ -1,9 +1,9 @@
 'use strict';
-
+const asyncHandler = require("express-async-handler")
 const Profile = require('../models/Profile');
 
 const getAllProfiles = (req, res) => {
-  profile.find({}, function(err, result) {
+  Profile.find({}, function(err, result) {
     if (err) res.send(err);
     res.json(result);
   });
@@ -60,15 +60,34 @@ const createProfile = (req, res) => {
   });
 };
 
-const getProfile = (req, res) => {
-  profile.findOne({ _id: req.params.profileID }, function(err, result) {
-    if (err) res.send(err);
-    res.json(result);
+const getProfile = asyncHandler(async (req, res, next) => {
+  console.log(req)
+  const profile = await Profile.findById(req.params.profileID);
+
+  if (!profile) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  res.status(200).json({
+    success: {
+      profile: {
+        id: profile._id,
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        gender: profile.gender,
+        birthday: profile.birthday,
+        email: profile.email,
+        phoneNumber: profile.phoneNumber,
+        address: profile.address,
+        description: profile.description,
+      },
+    },
   });
-};
+});
 
 const updateProfile = (req, res) => {
-  profile.updateOne({ _id: req.query.profileID }, req.body, function(
+  Profile.updateOne({ _id: req.query.profileID }, req.body, function(
     err,
     result
   ) {
