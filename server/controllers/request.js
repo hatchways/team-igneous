@@ -29,7 +29,7 @@ const createRequest = async (req, res) => {
 
 //update request if accepted or declined
 const updateRequest = async (req, res) => {
-  const { _id, answer, answerValue } = req.body.params;
+  const { _id, answer, answerValue } = req.body.data;
   if (answer === 'accepted') {
     await request.findByIdAndUpdate({ _id }, { accepted: answerValue }, function (err, docs) {
       if (err){
