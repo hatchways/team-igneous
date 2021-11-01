@@ -1,17 +1,17 @@
 import { AuthApiData } from '../../interface/AuthApiData';
 import { FetchOptions } from '../../interface/FetchOptions';
 
-const request = async (): Promise<AuthApiData> => {
+const getAllRequests = async (user_id: string): Promise<AuthApiData> => {
   const fetchOptions: FetchOptions = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
   };
-  return await fetch(`/request/all`, fetchOptions)
+  return await fetch(`/request/all/${user_id}`, fetchOptions)
     .then((res) => res.json())
-    .catch(() => ({
-      error: { message: 'Unable to connect to server. Please try again' },
+    .catch((err) => ({
+      error: { message: `Unable to connect to server. Please try again: ${err}` },
     }));
 };
 
-export default request;
+export default getAllRequests;
