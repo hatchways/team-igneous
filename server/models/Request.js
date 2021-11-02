@@ -1,26 +1,34 @@
 const mongoose = require('mongoose');
 
 const requestSchema = new mongoose.Schema({
-  user_id: {
-    type: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+
   },
-  sitter_id: {
-    type: String,
+  sitterId: {
+    type: mongoose.Schema.Types.ObjectId,
+    requred: true,
   },
   start: {
-    type: Number,
+    type: Date,
+    default: Date.now,
   },
   end: {
-    type: Number,
+    type: Date,
+    default: Date.now,
   },
   accepted: {
     type: Boolean,
+    default: false,
   },
   declined: {
     type: Boolean,
+    default: false,
   },
   paid: {
     type: Boolean,
+    default: false,
   },
 });
 
