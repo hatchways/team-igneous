@@ -26,4 +26,3 @@ exports.uploads = (file, folder) => {
     );
   });
 };
-//module.exports = cloudinaryConfig;
