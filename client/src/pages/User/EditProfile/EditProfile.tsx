@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import SideNav from '../../../components/SideNav/SideNav';
 import AuthMenu from '../../../components/AuthMenu/AuthMenu';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { User } from '../../../interface/User';
 import { FetchOptions } from '../../../interface/FetchOptions';
 
@@ -18,6 +18,7 @@ interface Props {
 export default function EditProfile({ loggedInUser }: Props): JSX.Element {
   const classes = useStyles();
   const profile = loggedInUser.profile;
+  const [profileData, setProfileData] = useState();
   const getProfile = async (profile: string) => {
     const fetchOptions: FetchOptions = {
       method: 'GET',
@@ -26,7 +27,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
     };
     await fetch(`/profile/${profile}`, fetchOptions)
       .then((res) => res.json())
-      .then((data) => console.log(data.success.profile.firstName))
+      .then((data) => setProfileData(data.success.profile))
       .catch(() => ({
         error: { message: 'Unable to connect to server. Please try again' },
       }));
