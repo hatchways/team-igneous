@@ -2,7 +2,8 @@ const request = require("../models/Request");
 
 //get all requests for "logged in user"
 const userRequests = async (req, res) => {
-  await request.find({user_id: req.params.user_id}, function (err, docs) {
+  userId = req.baseUrl.slice(1);
+  await request.find({ userId }, function (err, docs) {
     if (err){
         console.log("Error: ", err)
         res.status(400).json(err);  
@@ -15,8 +16,8 @@ const userRequests = async (req, res) => {
 
 //create a new request
 const createRequest = async (req, res) => {
-  const { user_id, sitter_id, start, end, accepted, declined, paid } = req.body.data;
-  await request.create({user_id:`${user_id}`, sitter_id:`${sitter_id}`, start:`${start}`, end:`${end}`, accepted:`${accepted}`, declined:`${declined}`, paid:`${paid}`}, function (err, docs) {
+  const { userName, userId, sitterName, sitterId, sitterProfile, start, end, accepted, declined, paid } = req.body.data;
+  await request.create({ userName, userId, sitterName, sitterId, sitterProfile, start, end, accepted:`${accepted}`, declined:`${declined}`, paid:`${paid}`}, function (err, docs) {
     if (err){
         console.log("Error: ", err)
         res.status(400).json(err);  
