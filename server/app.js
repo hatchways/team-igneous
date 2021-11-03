@@ -8,10 +8,12 @@ const connectDB = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const upload = require("./middleware/multer");
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter = require("./routes/profile");
+const imageRouter = require("./routes/imageUpload");
 
 const { json, urlencoded } = express;
 
@@ -45,34 +47,7 @@ app.use((req, res, next) => {
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/profile", profileRouter);
-
-const upload = require("./middleware/multer");
-const cloudinary = require("./config/cloudinaryConfig");
-const fs = require("fs");
-app.use("/upload", upload.array("picture"), async (req, res) => {
-  const uploader = async (path) => await cloudinary.uploads(path, "samples");
-
-  if (req.method === "POST") {
-    const urls = [];
-    const files = req.files;
-    for (const file of files) {
-      const path = file.path;
-      const newPath = await uploader(path);
-      urls.push(newPath);
-      urls.push(newPath);
-      fs.unlinkSync(path);
-    }
-
-    res.status(200).json({
-      message: "images uploadedsuccessfully",
-      data: urls,
-    });
-  } else {
-    res.status(405).json({
-      err: "method not allowed",
-    });
-  }
-});
+app.use("/imageUpload", upload.array("picture"), imageRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
