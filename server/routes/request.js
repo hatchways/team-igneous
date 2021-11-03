@@ -4,6 +4,6 @@ const { userRequests, createRequest, updateRequest } = require("../controllers/r
 
 router.route("/new").post(createRequest)
 router.route("/update").put(updateRequest);
-router.route("/all/:user_id").get(userRequests);
+router.route("/requests").get(userRequests);
 
 module.exports = router;
