@@ -25,15 +25,10 @@ const useStyles = makeStyles((theme) => ({
     color: 'grey',
     '&:hover': {
       color: 'black',
-
-      '&:visited': {
-        color: 'black',
-      },
     },
-
-    '&:visited': {
-      color: 'grey',
-    },
+  },
+  activeLink: {
+    color: 'black',
   },
 }));
 
