@@ -7,22 +7,22 @@ export default function SideNav(): JSX.Element {
   const classes = useStyles();
   return (
     <Grid item xs={2} sm={2} md={2} lg={2} xl={2} container component={Paper} className={classes.sideBar}>
-      <NavLink to="/user/edit-profile" className={classes.link}>
+      <NavLink exact to="/user/edit-profile" className={classes.link} activeClassName={classes.activeLink}>
         Edit Profile
       </NavLink>
-      <NavLink to="/user/profile-photo" className={classes.link}>
+      <NavLink exact to="/user/profile-photo" className={classes.link} activeClassName={classes.activeLink}>
         Profile Photo
       </NavLink>
-      <NavLink to="/user/image-gallery" className={classes.link}>
+      <NavLink exact to="/user/image-gallery" className={classes.link} activeClassName={classes.activeLink}>
         Image Gallery
       </NavLink>
-      <NavLink to="/user/payment" className={classes.link}>
+      <NavLink exact to="/user/payment" className={classes.link} activeClassName={classes.activeLink}>
         Payment
       </NavLink>
-      <NavLink to="/user/security" className={classes.link}>
+      <NavLink exact to="/user/security" className={classes.link} activeClassName={classes.activeLink}>
         Security
       </NavLink>
-      <NavLink to="/user/settings" className={classes.link}>
+      <NavLink exact to="/user/settings" className={classes.link} activeClassName={classes.activeLink}>
         Settings
       </NavLink>
     </Grid>
