@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   sideBar: {
-    // position: 'relative',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
