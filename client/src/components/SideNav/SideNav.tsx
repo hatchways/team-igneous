@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 export default function SideNav(): JSX.Element {
   const classes = useStyles();
   return (
-    <Grid item xs={5} sm={4} md={3} component={Paper} className={classes.sideBar}>
+    <Grid item xs={2} sm={2} md={2} lg={2} xl={2} container component={Paper} className={classes.sideBar}>
       <Link to="/user/edit-profile" className={classes.link}>
         Edit Profile
       </Link>
