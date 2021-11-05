@@ -20,7 +20,7 @@ exports.uploads = (file, folder) => {
         });
       },
       {
-        resoulce_type: "auto",
+        resource_type: "auto",
         folder: folder,
       }
     );
