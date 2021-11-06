@@ -10,6 +10,9 @@ import AuthMenu from '../../../components/AuthMenu/AuthMenu';
 import { useEffect, useState } from 'react';
 import { User } from '../../../interface/User';
 import { FetchOptions } from '../../../interface/FetchOptions';
+import { Formik, FormikHelpers, Field } from 'formik';
+import * as Yup from 'yup';
+import { CircularProgress } from '@material-ui/core';
 
 interface Props {
   loggedInUser: User;
@@ -18,7 +21,18 @@ interface Props {
 export default function EditProfile({ loggedInUser }: Props): JSX.Element {
   const classes = useStyles();
   const profile = loggedInUser.profile;
-  const [profileData, setProfileData] = useState();
+  const [loading, setLoading] = useState(true);
+  const [profileData, setProfileData] = useState({
+    id: ' ',
+    firstName: ' ',
+    lastName: ' ',
+    gender: ' ',
+    birthday: ' ',
+    email: ' ',
+    phoneNumber: ' ',
+    address: ' ',
+    description: ' ',
+  });
   const getProfile = async (profile: string) => {
     const fetchOptions: FetchOptions = {
       method: 'GET',
@@ -27,7 +41,21 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
     };
     await fetch(`/profile/${profile}`, fetchOptions)
       .then((res) => res.json())
-      .then((data) => setProfileData(data.success.profile))
+      .then((data) => {
+        const temp = data.success.profile;
+        setProfileData({
+          id: temp.id,
+          firstName: temp.firstName,
+          lastName: temp.lastName,
+          gender: temp.gender,
+          birthday: temp.birthday,
+          email: temp.email,
+          phoneNumber: temp.phoneNumber,
+          address: temp.address,
+          description: temp.description,
+        });
+        setLoading(false);
+      })
       .catch(() => ({
         error: { message: 'Unable to connect to server. Please try again' },
       }));
@@ -36,8 +64,60 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
     if (profile) {
       getProfile(profile);
     }
-  }, [profile]);
+  });
+  const handleSubmit = async (
+    {
+      id,
+      firstName,
+      lastName,
+      gender,
+      birthday,
+      email,
+      phoneNumber,
+      address,
+      description,
+    }: {
+      id: string;
+      firstName: string;
+      lastName: string;
+      gender: string;
+      birthday: string;
+      email: string;
+      phoneNumber: string;
+      address: string;
+      description: string;
+    },
+    {
+      setSubmitting,
+    }: FormikHelpers<{
+      id: string;
+      firstName: string;
+      lastName: string;
+      gender: string;
+      birthday: string;
+      email: string;
+      phoneNumber: string;
+      address: string;
+      description: string;
+    }>,
+  ) => {
+    const fetchOptions: FetchOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, firstName, lastName, gender, birthday, email, phoneNumber, address, description }),
+      credentials: 'include',
+    };
+    console.log('handle it');
+    return await fetch(`/profile/${profile}/update`, fetchOptions)
+      .then((res) => res.json())
+      .then(() => setSubmitting(false))
+      .catch(() => ({
+        error: { message: 'Unable to connect to server. Please try again' },
+      }));
+  };
 
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   return (
     <Grid container component="main" className={`${classes.root}`}>
       <AuthMenu />
@@ -46,65 +126,222 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
         <Typography className={classes.title} component="h1">
           Edit Profile
         </Typography>
-        <Box className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} variant="h3">
-              first name
-            </Typography>
-            <TextField label="First Name" variant="outlined" focused />
-          </Box>
-        </Box>
-        <Box className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} variant="h3">
-              last name
-            </Typography>
-            <TextField label="Last Name" variant="outlined" focused />
-          </Box>
-        </Box>
-        <Box className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} variant="h3">
-              email address
-            </Typography>
-            <TextField label="Email Address" variant="outlined" focused placeholder="user@gmail.com" />
-          </Box>
-        </Box>
-        <Box className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} variant="h3">
-              city
-            </Typography>
-            <TextField label="City" variant="outlined" focused />
-          </Box>
-        </Box>
-        <Box className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} variant="h3">
-              phone number
-            </Typography>
-            <TextField label="Phone Number" variant="outlined" focused placeholder="Phone Number" />
-          </Box>
-        </Box>
-        <Box className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} variant="h3">
-              where you live
-            </Typography>
-            <TextField label="Address" variant="outlined" focused placeholder="Address" />
-          </Box>
-        </Box>
-        <Box className={classes.textFieldBox}>
-          <Box className={classes.textFieldBoxItems}>
-            <Typography className={classes.textFieldTitle} variant="h3">
-              describe yourself
-            </Typography>
-            <TextField label="About You" variant="outlined" focused placeholder="About you" />
-          </Box>
-        </Box>
-        <Box className={classes.saveButtonBox}>
-          <Button className={classes.saveButton}>SAVE</Button>
-        </Box>
+
+        <Formik
+          enableReinitialize={true}
+          initialValues={{
+            id: profileData.id,
+            firstName: profileData.firstName,
+            lastName: profileData.lastName,
+            gender: profileData.gender,
+            birthday: profileData.birthday,
+            email: profileData.email,
+            phoneNumber: profileData.phoneNumber,
+            address: profileData.address,
+            description: profileData.description,
+          }}
+          validator={() => ({})}
+          // validationSchema={Yup.object().shape({
+          //   firstName: Yup.string().required('First name is required').max(40, 'First name is too long'),
+          //   lastName: Yup.string().required('Lase name is required').max(40, 'Last name is too long'),
+          //   gender: Yup.string().required('Gender is required').max(40, 'Gender is too long'),
+          //   birthday: Yup.date().required('Birthday is required'),
+          //   email: Yup.string().required('Email is required').email('Email is not valid'),
+          //   phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+          //   address: Yup.string().required('Address is required').max(40, 'Address is too long'),
+          //   description: Yup.string().required('Description is required').max(240, 'Description is too long'),
+          // })}
+          onSubmit={handleSubmit}
+        >
+          {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
+            <form onSubmit={handleSubmit} noValidate>
+              <TextField
+                id="firstName"
+                label={
+                  <Typography className={classes.textFieldTitle} variant="h3">
+                    first name
+                  </Typography>
+                }
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  classes: { input: classes.textFieldBoxItems },
+                  disableUnderline: true,
+                }}
+                name="firstName"
+                error={touched.firstName && Boolean(errors.firstName)}
+                helperText={touched.firstName && errors.firstName}
+                value={values.firstName || ''}
+                placeholder="John"
+                onChange={handleChange}
+              />
+              <TextField
+                id="lastName"
+                label={
+                  <Typography className={classes.textFieldTitle} variant="h3">
+                    last name
+                  </Typography>
+                }
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  classes: { input: classes.textFieldBoxItems },
+                  disableUnderline: true,
+                }}
+                name="lastName"
+                autoFocus
+                error={touched.lastName && Boolean(errors.lastName)}
+                helperText={touched.lastName && errors.lastName}
+                value={values.lastName || ''}
+                placeholder="Doe"
+                onChange={handleChange}
+              />
+              <Field
+                id="gender"
+                as="select"
+                label={
+                  <Typography className={classes.textFieldTitle} variant="h3">
+                    gender
+                  </Typography>
+                }
+                name="gender"
+                value={values.gender}
+                onChange={handleChange}
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="prefer not to say">Prefer not to say</option>
+              </Field>
+              <TextField
+                id="birthday"
+                label={
+                  <Typography className={classes.textFieldTitle} variant="h3">
+                    birthday
+                  </Typography>
+                }
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  classes: { input: classes.textFieldBoxItems },
+                  disableUnderline: true,
+                }}
+                name="birthday"
+                error={touched.birthday && Boolean(errors.birthday)}
+                helperText={touched.birthday && errors.birthday}
+                value={values.birthday || ''}
+                placeholder="MM/DD/YYYY"
+                onChange={handleChange}
+              />
+              <TextField
+                id="email"
+                label={
+                  <Typography className={classes.textFieldTitle} variant="h3">
+                    email
+                  </Typography>
+                }
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  classes: { input: classes.textFieldBoxItems },
+                  disableUnderline: true,
+                }}
+                name="email"
+                error={touched.email && Boolean(errors.email)}
+                helperText={touched.email && errors.email}
+                value={values.email || ''}
+                placeholder="johndoe@gmail.com"
+                onChange={handleChange}
+              />
+              <TextField
+                id="phoneNumber"
+                label={
+                  <Typography className={classes.textFieldTitle} variant="h3">
+                    phone number
+                  </Typography>
+                }
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  classes: { input: classes.textFieldBoxItems },
+                  disableUnderline: true,
+                }}
+                name="phoneNumber"
+                error={touched.phoneNumber && Boolean(errors.phoneNumber)}
+                helperText={touched.phoneNumber && errors.phoneNumber}
+                value={values.phoneNumber || ''}
+                placeholder="xxx-xxxx"
+                onChange={handleChange}
+              />
+              <TextField
+                id="address"
+                label={
+                  <Typography className={classes.textFieldTitle} variant="h3">
+                    address
+                  </Typography>
+                }
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  classes: { input: classes.textFieldBoxItems },
+                  disableUnderline: true,
+                }}
+                name="address"
+                error={touched.address && Boolean(errors.address)}
+                helperText={touched.address && errors.address}
+                value={values.address || ''}
+                placeholder="123 Fake St"
+                onChange={handleChange}
+              />
+              <TextField
+                id="description"
+                label={
+                  <Typography className={classes.textFieldTitle} variant="h3">
+                    description
+                  </Typography>
+                }
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  classes: { input: classes.textFieldBoxItems },
+                  disableUnderline: true,
+                }}
+                name="description"
+                error={touched.description && Boolean(errors.description)}
+                helperText={touched.description && errors.description}
+                value={values.description || ''}
+                placeholder="tell us about yourself"
+                onChange={handleChange}
+              />
+              <Box textAlign="center">
+                <Button type="submit" size="large" variant="contained" color="primary" className={classes.saveButton}>
+                  {isSubmitting ? <CircularProgress className={classes.circle} /> : 'save'}
+                </Button>
+              </Box>
+            </form>
+          )}
+        </Formik>
       </Grid>
     </Grid>
   );

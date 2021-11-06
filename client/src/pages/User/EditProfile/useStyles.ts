@@ -52,6 +52,9 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
   },
+  circle: {
+    background: 'blue',
+  },
 }));
 
 export default useStyles;

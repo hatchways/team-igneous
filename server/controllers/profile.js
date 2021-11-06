@@ -61,7 +61,6 @@ const createProfile = (req, res) => {
 };
 
 const getProfile = asyncHandler(async (req, res, next) => {
-  console.log(req)
   const profile = await Profile.findById(req.params.profileID);
 
   if (!profile) {
@@ -86,14 +85,41 @@ const getProfile = asyncHandler(async (req, res, next) => {
   });
 });
 
-const updateProfile = (req, res) => {
-  Profile.updateOne({ _id: req.query.profileID }, req.body, function(
-    err,
-    result
-  ) {
-    if (err) res.send(err);
-    res.json(result);
+const updateProfile = asyncHandler(async (req, res, next) => {
+  const profile = await Profile.findById(req.body.id);
+  console.log(profile )
+  if (!profile) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+  profile.update({
+    id: req.body._id,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    gender: req.body.gender,
+    birthday: req.body.birthday,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    address: req.body.address,
+    description: req.body.description,
+  })
+
+  res.status(200).json({
+    success: {
+      profile: {
+        id: profile._id,
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        gender: profile.gender,
+        birthday: profile.birthday,
+        email: profile.email,
+        phoneNumber: profile.phoneNumber,
+        address: profile.address,
+        description: profile.description,
+      },
+    },
   });
-};
+});
+
 
 module.exports = { getAllProfiles, getProfile, createProfile, updateProfile };

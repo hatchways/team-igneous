@@ -6,11 +6,28 @@ const generateToken = require('../utils/generateToken');
 // @route POST /auth/register
 // @desc Register user
 // @access Public
+
+const initiateProfile = async (id) => {
+  
+  if (user) {
+  const profileTemp = await Profile.create({
+    firstName: user.name,
+    lastName: '',
+    gender: '',
+    birthday: '',
+    email: user.email,
+    phoneNumber: '',
+    address: '',
+    description: '',
+  });
+  const { _id } = profileTemp
+  user.updateOne({profile: _id });
+}
+
+}
 exports.registerUser = asyncHandler(async (req, res, next) => {
   const { username, email, password } = req.body;
-
   const emailExists = await User.findOne({ email });
-
   if (emailExists) {
     res.status(400);
     throw new Error('A user with that email already exists');
@@ -22,30 +39,16 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     res.status(400);
     throw new Error('A user with that username already exists');
   }
-  const firstName = username;
-  const lastName = '';
-  const description = '';
-  const availability = false;
-  const profile = await Profile.create({
-    firstName,
-    lastName,
-    description,
-    availability,
-  });
 
   const user = await User.create({
     username,
     email,
     password,
-    profile,
-  });
-
-  user.profile = profile._id;
+  })
 
   if (user) {
     const token = generateToken(user._id);
     const secondsInWeek = 604800;
-
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
@@ -60,6 +63,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
         },
       },
     });
+    initiateProfile(user._id)
   } else {
     res.status(400);
     throw new Error('Invalid user data');
