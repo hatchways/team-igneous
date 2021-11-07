@@ -1,3 +1,5 @@
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import useStyles from './useStyles';
 import AuthMenu from '../../components/AuthMenu/AuthMenu';
 import Grid from '@material-ui/core/Grid';
@@ -11,6 +13,25 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function ProfilePicture(): JSX.Element {
   const classes = useStyles();
+  const [fileInputState, setFileInputState] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
+    const image: File = (target.files as FileList)[0];
+    profileImage(image);
+  };
+
+  const profileImage = (image: File) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      setPreviewImage(result);
+    };
+  };
+
   return (
     <Box className={classes.outsideContainer}>
       <AuthMenu />
@@ -34,8 +55,8 @@ export default function ProfilePicture(): JSX.Element {
                 Profile Picture
               </Typography>
             </Grid>
-            <Grid item container className={classes.profileImageContainer}>
-              <img src="" className={classes.profileImage}></img>
+            <Grid item container className={classes.previewImageContainer}>
+              {previewImage && <img src={previewImage} className={classes.previewImage}></img>}
             </Grid>
             <Grid item container className={classes.tipContainer}>
               <Typography variant="h6" className={classes.tip}>
@@ -44,11 +65,20 @@ export default function ProfilePicture(): JSX.Element {
               </Typography>
             </Grid>
             <Grid item container className={classes.uploadButtonContainer}>
-              <Button variant="text" className={classes.uploadButton}>
-                Upload a file from your device
-              </Button>
+              <form>
+                <input
+                  className={classes.uploadInput}
+                  id="fileInput"
+                  name="fileInput"
+                  type="file"
+                  onChange={handleChange}
+                  value={fileInputState}
+                />
+                <Button>Upload a file from your device</Button>
+              </form>
             </Grid>
             <Grid item container className={classes.deleteButtonContainer}>
+              {/*this is going to remove from the cloud*/}
               <IconButton className={classes.deleteButton}>
                 <DeleteIcon className={classes.deleteButtonIcon} />
                 Delete photo
