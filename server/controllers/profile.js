@@ -14,7 +14,6 @@ const createProfile = (req, res) => {
     firstName,
     lastName,
     gender,
-    birthday,
     email,
     phoneNumber,
     address,
@@ -31,10 +30,6 @@ const createProfile = (req, res) => {
   if (gender && typeof gender !== 'string') {
     res.status(404);
     throw new Error('Provide input as a String for gender');
-  }
-  if (birthday && typeof birthday !== 'string') {
-    res.status(404);
-    throw new Error('Provide input as a date for birthday');
   }
   if (email && typeof email !== 'string') {
     res.status(404);
@@ -75,7 +70,6 @@ const getProfile = asyncHandler(async (req, res, next) => {
         firstName: profile.firstName,
         lastName: profile.lastName,
         gender: profile.gender,
-        birthday: profile.birthday,
         email: profile.email,
         phoneNumber: profile.phoneNumber,
         address: profile.address,
@@ -97,12 +91,13 @@ const updateProfile = asyncHandler(async (req, res, next) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     gender: req.body.gender,
-    birthday: req.body.birthday,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     address: req.body.address,
     description: req.body.description,
   })
+
+  profile.save()
 
   res.status(200).json({
     success: {
@@ -111,7 +106,6 @@ const updateProfile = asyncHandler(async (req, res, next) => {
         firstName: profile.firstName,
         lastName: profile.lastName,
         gender: profile.gender,
-        birthday: profile.birthday,
         email: profile.email,
         phoneNumber: profile.phoneNumber,
         address: profile.address,

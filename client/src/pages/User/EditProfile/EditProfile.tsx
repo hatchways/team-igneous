@@ -27,7 +27,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
     firstName: ' ',
     lastName: ' ',
     gender: ' ',
-    birthday: ' ',
     email: ' ',
     phoneNumber: ' ',
     address: ' ',
@@ -48,7 +47,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
           firstName: temp.firstName,
           lastName: temp.lastName,
           gender: temp.gender,
-          birthday: temp.birthday,
           email: temp.email,
           phoneNumber: temp.phoneNumber,
           address: temp.address,
@@ -71,7 +69,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
       firstName,
       lastName,
       gender,
-      birthday,
       email,
       phoneNumber,
       address,
@@ -81,7 +78,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
       firstName: string;
       lastName: string;
       gender: string;
-      birthday: string;
       email: string;
       phoneNumber: string;
       address: string;
@@ -94,7 +90,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
       firstName: string;
       lastName: string;
       gender: string;
-      birthday: string;
       email: string;
       phoneNumber: string;
       address: string;
@@ -104,7 +99,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
     const fetchOptions: FetchOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, firstName, lastName, gender, birthday, email, phoneNumber, address, description }),
+      body: JSON.stringify({ id, firstName, lastName, gender, email, phoneNumber, address, description }),
       credentials: 'include',
     };
     console.log('handle it');
@@ -134,7 +129,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
             firstName: profileData.firstName,
             lastName: profileData.lastName,
             gender: profileData.gender,
-            birthday: profileData.birthday,
             email: profileData.email,
             phoneNumber: profileData.phoneNumber,
             address: profileData.address,
@@ -145,7 +139,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
           //   firstName: Yup.string().required('First name is required').max(40, 'First name is too long'),
           //   lastName: Yup.string().required('Lase name is required').max(40, 'Last name is too long'),
           //   gender: Yup.string().required('Gender is required').max(40, 'Gender is too long'),
-          //   birthday: Yup.date().required('Birthday is required'),
           //   email: Yup.string().required('Email is required').email('Email is not valid'),
           //   phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
           //   address: Yup.string().required('Address is required').max(40, 'Address is too long'),
@@ -219,29 +212,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                 <option value="Other">Other</option>
                 <option value="prefer not to say">Prefer not to say</option>
               </Field>
-              <TextField
-                id="birthday"
-                label={
-                  <Typography className={classes.textFieldTitle} variant="h3">
-                    birthday
-                  </Typography>
-                }
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  classes: { input: classes.textFieldBoxItems },
-                  disableUnderline: true,
-                }}
-                name="birthday"
-                error={touched.birthday && Boolean(errors.birthday)}
-                helperText={touched.birthday && errors.birthday}
-                value={values.birthday || ''}
-                placeholder="MM/DD/YYYY"
-                onChange={handleChange}
-              />
               <TextField
                 id="email"
                 label={

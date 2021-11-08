@@ -6,28 +6,11 @@ const generateToken = require('../utils/generateToken');
 // @route POST /auth/register
 // @desc Register user
 // @access Public
-
-const initiateProfile = async (id) => {
-  
-  if (user) {
-  const profileTemp = await Profile.create({
-    firstName: user.name,
-    lastName: '',
-    gender: '',
-    birthday: '',
-    email: user.email,
-    phoneNumber: '',
-    address: '',
-    description: '',
-  });
-  const { _id } = profileTemp
-  user.updateOne({profile: _id });
-}
-
-}
 exports.registerUser = asyncHandler(async (req, res, next) => {
   const { username, email, password } = req.body;
+
   const emailExists = await User.findOne({ email });
+
   if (emailExists) {
     res.status(400);
     throw new Error('A user with that email already exists');
@@ -39,16 +22,35 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     res.status(400);
     throw new Error('A user with that username already exists');
   }
+  const firstName = username;
+  const lastName = '';
+  const gender = '';
+  const phoneNumber = '';
+  const address = '';
+  const description = '';
+
+  const profile = await Profile.create({
+    firstName,
+    lastName,
+    gender,
+    email,
+    phoneNumber,
+    address,
+    description,
+  });
 
   const user = await User.create({
     username,
     email,
     password,
-  })
+  });
 
-  if (user) {
+
+  if (user && profile) {
     const token = generateToken(user._id);
     const secondsInWeek = 604800;
+    user.profile = profile._id;
+    user.save()
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
@@ -60,10 +62,10 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
           id: user._id,
           username: user.username,
           email: user.email,
+          profile: user.profile,
         },
       },
     });
-    initiateProfile(user._id)
   } else {
     res.status(400);
     throw new Error('Invalid user data');
@@ -119,7 +121,6 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
         id: user._id,
         username: user.username,
         email: user.email,
-        profile: user.profile,
       },
     },
   });
