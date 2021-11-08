@@ -19,8 +19,8 @@ interface Props {
 }
 
 export default function EditProfile({ loggedInUser }: Props): JSX.Element {
-  const classes = useStyles();
   const profile = loggedInUser.profile;
+  const classes = useStyles();
   const [loading, setLoading] = useState(true);
   const [profileData, setProfileData] = useState({
     id: ' ',
@@ -60,9 +60,12 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
   };
   useEffect(() => {
     if (profile) {
-      getProfile(profile);
+      (async () => {
+        await getProfile(profile);
+      })();
     }
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleSubmit = async (
     {
       id,
@@ -102,7 +105,6 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
       body: JSON.stringify({ id, firstName, lastName, gender, email, phoneNumber, address, description }),
       credentials: 'include',
     };
-    console.log('handle it');
     return await fetch(`/profile/${profile}/update`, fetchOptions)
       .then((res) => res.json())
       .then(() => setSubmitting(false))
@@ -121,197 +123,198 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
         <Typography className={classes.title} component="h1">
           Edit Profile
         </Typography>
-
-        <Formik
-          enableReinitialize={true}
-          initialValues={{
-            id: profileData.id,
-            firstName: profileData.firstName,
-            lastName: profileData.lastName,
-            gender: profileData.gender,
-            email: profileData.email,
-            phoneNumber: profileData.phoneNumber,
-            address: profileData.address,
-            description: profileData.description,
-          }}
-          validator={() => ({})}
-          // validationSchema={Yup.object().shape({
-          //   firstName: Yup.string().required('First name is required').max(40, 'First name is too long'),
-          //   lastName: Yup.string().required('Lase name is required').max(40, 'Last name is too long'),
-          //   gender: Yup.string().required('Gender is required').max(40, 'Gender is too long'),
-          //   email: Yup.string().required('Email is required').email('Email is not valid'),
-          //   phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-          //   address: Yup.string().required('Address is required').max(40, 'Address is too long'),
-          //   description: Yup.string().required('Description is required').max(240, 'Description is too long'),
-          // })}
-          onSubmit={handleSubmit}
-        >
-          {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
-            <form onSubmit={handleSubmit} noValidate>
-              <TextField
-                id="firstName"
-                label={
-                  <Typography className={classes.textFieldTitle} variant="h3">
-                    first name
-                  </Typography>
-                }
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  classes: { input: classes.textFieldBoxItems },
-                  disableUnderline: true,
-                }}
-                name="firstName"
-                error={touched.firstName && Boolean(errors.firstName)}
-                helperText={touched.firstName && errors.firstName}
-                value={values.firstName || ''}
-                placeholder="John"
-                onChange={handleChange}
-              />
-              <TextField
-                id="lastName"
-                label={
-                  <Typography className={classes.textFieldTitle} variant="h3">
-                    last name
-                  </Typography>
-                }
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  classes: { input: classes.textFieldBoxItems },
-                  disableUnderline: true,
-                }}
-                name="lastName"
-                autoFocus
-                error={touched.lastName && Boolean(errors.lastName)}
-                helperText={touched.lastName && errors.lastName}
-                value={values.lastName || ''}
-                placeholder="Doe"
-                onChange={handleChange}
-              />
-              <Field
-                id="gender"
-                as="select"
-                label={
-                  <Typography className={classes.textFieldTitle} variant="h3">
-                    gender
-                  </Typography>
-                }
-                name="gender"
-                value={values.gender}
-                onChange={handleChange}
-              >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-                <option value="prefer not to say">Prefer not to say</option>
-              </Field>
-              <TextField
-                id="email"
-                label={
-                  <Typography className={classes.textFieldTitle} variant="h3">
-                    email
-                  </Typography>
-                }
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  classes: { input: classes.textFieldBoxItems },
-                  disableUnderline: true,
-                }}
-                name="email"
-                error={touched.email && Boolean(errors.email)}
-                helperText={touched.email && errors.email}
-                value={values.email || ''}
-                placeholder="johndoe@gmail.com"
-                onChange={handleChange}
-              />
-              <TextField
-                id="phoneNumber"
-                label={
-                  <Typography className={classes.textFieldTitle} variant="h3">
-                    phone number
-                  </Typography>
-                }
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  classes: { input: classes.textFieldBoxItems },
-                  disableUnderline: true,
-                }}
-                name="phoneNumber"
-                error={touched.phoneNumber && Boolean(errors.phoneNumber)}
-                helperText={touched.phoneNumber && errors.phoneNumber}
-                value={values.phoneNumber || ''}
-                placeholder="xxx-xxxx"
-                onChange={handleChange}
-              />
-              <TextField
-                id="address"
-                label={
-                  <Typography className={classes.textFieldTitle} variant="h3">
-                    address
-                  </Typography>
-                }
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  classes: { input: classes.textFieldBoxItems },
-                  disableUnderline: true,
-                }}
-                name="address"
-                error={touched.address && Boolean(errors.address)}
-                helperText={touched.address && errors.address}
-                value={values.address || ''}
-                placeholder="123 Fake St"
-                onChange={handleChange}
-              />
-              <TextField
-                id="description"
-                label={
-                  <Typography className={classes.textFieldTitle} variant="h3">
-                    description
-                  </Typography>
-                }
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  classes: { input: classes.textFieldBoxItems },
-                  disableUnderline: true,
-                }}
-                name="description"
-                error={touched.description && Boolean(errors.description)}
-                helperText={touched.description && errors.description}
-                value={values.description || ''}
-                placeholder="tell us about yourself"
-                onChange={handleChange}
-              />
-              <Box textAlign="center">
-                <Button type="submit" size="large" variant="contained" color="primary" className={classes.saveButton}>
-                  {isSubmitting ? <CircularProgress className={classes.circle} /> : 'save'}
-                </Button>
-              </Box>
-            </form>
-          )}
-        </Formik>
+        {!loading && (
+          <Formik
+            enableReinitialize={true}
+            initialValues={{
+              id: profileData.id,
+              firstName: profileData.firstName,
+              lastName: profileData.lastName,
+              gender: profileData.gender,
+              email: profileData.email,
+              phoneNumber: profileData.phoneNumber,
+              address: profileData.address,
+              description: profileData.description,
+            }}
+            validator={() => ({})}
+            validationSchema={Yup.object().shape({
+              firstName: Yup.string().required('First name is required').max(40, 'First name is too long'),
+              lastName: Yup.string().required('Lase name is required').max(40, 'Last name is too long'),
+              gender: Yup.string().required('Gender is required').max(40, 'Gender is too long'),
+              email: Yup.string().required('Email is required').email('Email is not valid'),
+              phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+              address: Yup.string().required('Address is required').max(40, 'Address is too long'),
+              description: Yup.string().required('Description is required').max(240, 'Description is too long'),
+            })}
+            onSubmit={handleSubmit}
+          >
+            {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
+              <form onSubmit={handleSubmit} noValidate>
+                <TextField
+                  id="firstName"
+                  label={
+                    <Typography className={classes.textFieldTitle} variant="h3">
+                      first name
+                    </Typography>
+                  }
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{
+                    classes: { input: classes.textFieldBoxItems },
+                    disableUnderline: true,
+                  }}
+                  name="firstName"
+                  error={touched.firstName && Boolean(errors.firstName)}
+                  helperText={touched.firstName && errors.firstName}
+                  value={values.firstName || ''}
+                  placeholder="John"
+                  onChange={handleChange}
+                />
+                <TextField
+                  id="lastName"
+                  label={
+                    <Typography className={classes.textFieldTitle} variant="h3">
+                      last name
+                    </Typography>
+                  }
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{
+                    classes: { input: classes.textFieldBoxItems },
+                    disableUnderline: true,
+                  }}
+                  name="lastName"
+                  autoFocus
+                  error={touched.lastName && Boolean(errors.lastName)}
+                  helperText={touched.lastName && errors.lastName}
+                  value={values.lastName || ''}
+                  placeholder="Doe"
+                  onChange={handleChange}
+                />
+                <Field
+                  id="gender"
+                  as="select"
+                  label={
+                    <Typography className={classes.textFieldTitle} variant="h3">
+                      gender
+                    </Typography>
+                  }
+                  name="gender"
+                  value={values.gender}
+                  onChange={handleChange}
+                >
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                  <option value="prefer not to say">Prefer not to say</option>
+                </Field>
+                <TextField
+                  id="email"
+                  label={
+                    <Typography className={classes.textFieldTitle} variant="h3">
+                      email
+                    </Typography>
+                  }
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{
+                    classes: { input: classes.textFieldBoxItems },
+                    disableUnderline: true,
+                  }}
+                  name="email"
+                  error={touched.email && Boolean(errors.email)}
+                  helperText={touched.email && errors.email}
+                  value={values.email || ''}
+                  placeholder="johndoe@gmail.com"
+                  onChange={handleChange}
+                />
+                <TextField
+                  id="phoneNumber"
+                  label={
+                    <Typography className={classes.textFieldTitle} variant="h3">
+                      phone number
+                    </Typography>
+                  }
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{
+                    classes: { input: classes.textFieldBoxItems },
+                    disableUnderline: true,
+                  }}
+                  name="phoneNumber"
+                  error={touched.phoneNumber && Boolean(errors.phoneNumber)}
+                  helperText={touched.phoneNumber && errors.phoneNumber}
+                  value={values.phoneNumber || ''}
+                  placeholder="xxx-xxxx"
+                  onChange={handleChange}
+                />
+                <TextField
+                  id="address"
+                  label={
+                    <Typography className={classes.textFieldTitle} variant="h3">
+                      address
+                    </Typography>
+                  }
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{
+                    classes: { input: classes.textFieldBoxItems },
+                    disableUnderline: true,
+                  }}
+                  name="address"
+                  error={touched.address && Boolean(errors.address)}
+                  helperText={touched.address && errors.address}
+                  value={values.address || ''}
+                  placeholder="123 Fake St"
+                  onChange={handleChange}
+                />
+                <TextField
+                  id="description"
+                  label={
+                    <Typography className={classes.textFieldTitle} variant="h3">
+                      description
+                    </Typography>
+                  }
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  InputProps={{
+                    classes: { input: classes.textFieldBoxItems },
+                    disableUnderline: true,
+                  }}
+                  name="description"
+                  error={touched.description && Boolean(errors.description)}
+                  helperText={touched.description && errors.description}
+                  value={values.description || ''}
+                  placeholder="tell us about yourself"
+                  onChange={handleChange}
+                />
+                <Box textAlign="center">
+                  <Button type="submit" size="large" variant="contained" color="primary" className={classes.saveButton}>
+                    {isSubmitting ? <CircularProgress className={classes.circle} /> : 'save'}
+                  </Button>
+                </Box>
+              </form>
+            )}
+          </Formik>
+        )}
       </Grid>
     </Grid>
   );

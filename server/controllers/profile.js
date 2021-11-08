@@ -1,5 +1,5 @@
 'use strict';
-const asyncHandler = require("express-async-handler")
+const asyncHandler = require('express-async-handler');
 const Profile = require('../models/Profile');
 
 const getAllProfiles = (req, res) => {
@@ -80,40 +80,15 @@ const getProfile = asyncHandler(async (req, res, next) => {
 });
 
 const updateProfile = asyncHandler(async (req, res, next) => {
-  const profile = await Profile.findById(req.body.id);
-  console.log(profile )
-  if (!profile) {
-    res.status(401);
-    throw new Error('Not authorized');
-  }
-  profile.update({
-    id: req.body._id,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    gender: req.body.gender,
-    email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
-    address: req.body.address,
-    description: req.body.description,
-  })
-
-  profile.save()
-
-  res.status(200).json({
-    success: {
-      profile: {
-        id: profile._id,
-        firstName: profile.firstName,
-        lastName: profile.lastName,
-        gender: profile.gender,
-        email: profile.email,
-        phoneNumber: profile.phoneNumber,
-        address: profile.address,
-        description: profile.description,
-      },
-    },
-  });
+  Profile.findByIdAndUpdate(
+    req.body.id,
+    req.body,
+    { new: true },
+    (err, todo) => {
+      if (err) return res.status(500).send(err);
+      return res.send(todo);
+    }
+  );
 });
-
 
 module.exports = { getAllProfiles, getProfile, createProfile, updateProfile };
