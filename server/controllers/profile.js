@@ -20,31 +20,31 @@ const createProfile = (req, res) => {
     description,
   } = req.body;
   if (firstName && typeof firstName !== 'string') {
-    res.status(404);
+    res.status(400);
     throw new Error('Provide input as a String for firstName');
   }
   if (lastName && typeof lastName !== 'string') {
-    res.status(404);
+    res.status(400);
     throw new Error('Provide input as a String for lastName');
   }
   if (gender && typeof gender !== 'string') {
-    res.status(404);
+    res.status(400);
     throw new Error('Provide input as a String for gender');
   }
   if (email && typeof email !== 'string') {
-    res.status(404);
+    res.status(400);
     throw new Error('Provide input as a String for email');
   }
   if (phoneNumber && typeof phoneNumber !== 'string') {
-    res.status(404);
+    res.status(400);
     throw new Error('Provide input as a String for phone number');
   }
   if (address && typeof address !== 'string') {
-    res.status(404);
+    res.status(400);
     throw new Error('Provide input as a String for address');
   }
   if (description && typeof description !== 'string') {
-    res.status(404);
+    res.status(400);
     throw new Error('Provide input as a String for description');
   }
 

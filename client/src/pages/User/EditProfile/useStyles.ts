@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   sideBar: {
     flexDirection: 'column',
@@ -11,7 +11,6 @@ const useStyles = makeStyles(() => ({
     width: '60%',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: -1,
     overflow: 'hidden',
     margin: '20px auto',
   },
@@ -43,7 +42,7 @@ const useStyles = makeStyles(() => ({
   title: {
     fontSize: 24,
     fontWeight: 700,
-    fontFamily: '"sans-serif"',
+    fontFamily: theme.typography.fontFamily,
     textAlign: 'center',
   },
   form: {
@@ -58,6 +57,13 @@ const useStyles = makeStyles(() => ({
     textTransform: 'uppercase',
   },
   inputs: {
+    marginTop: '.8rem',
+    height: '2rem',
+    padding: '12px',
+    border: '1px solid lightgrey',
+    borderRadius: '5px',
+  },
+  select: {
     marginTop: '.8rem',
     height: '2rem',
     padding: '12px',

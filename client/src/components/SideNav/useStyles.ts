@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     textDecoration: 'none',
     marginTop: '2rem',
+    marginLeft: '2rem',
     fontSize: '1rem',
     fontFamily: '"Open Sans", "sans-serif", "Roboto"',
     fontWeight: 700,

@@ -210,16 +210,16 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                   value={values.gender}
                   onChange={handleChange}
                 >
-                  <option className={classes.label} value="Male">
+                  <option className={classes.inputs} value="Male">
                     Male
                   </option>
-                  <option className={classes.label} value="Female">
+                  <option className={classes.inputs} value="Female">
                     Female
                   </option>
-                  <option className={classes.label} value="Other">
+                  <option className={classes.inputs} value="Other">
                     Other
                   </option>
-                  <option className={classes.label} value="prefer not to say">
+                  <option className={classes.inputs} value="prefer not to say">
                     Prefer not to say
                   </option>
                 </TextField>
