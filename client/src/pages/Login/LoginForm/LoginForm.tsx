@@ -28,6 +28,7 @@ interface Props {
 
 export default function Login({ handleSubmit }: Props): JSX.Element {
   const classes = useStyles();
+  let demo = false;
 
   return (
     <Formik
@@ -91,7 +92,21 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
           />
           <Box textAlign="center">
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
-              {isSubmitting ? <CircularProgress className={classes.circle} /> : 'Login'}
+              {!demo && isSubmitting ? <CircularProgress className={classes.circle} /> : 'Login'}
+            </Button>
+            <Button
+              type="submit"
+              size="large"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => {
+                values.email = 'demo.user@gmail.com';
+                values.password = 'demouser';
+                demo = true;
+              }}
+            >
+              {demo && isSubmitting ? <CircularProgress className={classes.circle} /> : 'Use Demo'}
             </Button>
           </Box>
         </form>

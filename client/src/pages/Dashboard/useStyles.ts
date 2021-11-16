@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
   },
-  dashboard: { backgroundColor: '#FFFFFF' },
   drawerWrapper: {
     width: '100%',
   },

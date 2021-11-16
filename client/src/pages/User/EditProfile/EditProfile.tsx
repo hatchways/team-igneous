@@ -19,6 +19,7 @@ interface Props {
 }
 
 export default function EditProfile({ loggedInUser }: Props): JSX.Element {
+  console.log(loggedInUser);
   const profile = loggedInUser.profile;
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
@@ -119,7 +120,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
     <Grid container component="main" className={`${classes.root}`}>
       <AuthMenu />
       <SideNav />
-      <Grid item xs={7} sm={8} md={9} component={Paper} className={classes.content}>
+      <Paper className={classes.content}>
         <Typography className={classes.title} component="h1">
           Edit Profile
         </Typography>
@@ -149,11 +150,11 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
             onSubmit={handleSubmit}
           >
             {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
-              <form onSubmit={handleSubmit} noValidate>
+              <form onSubmit={handleSubmit} noValidate className={classes.form}>
                 <TextField
                   id="firstName"
                   label={
-                    <Typography className={classes.textFieldTitle} variant="h3">
+                    <Typography className={classes.label} variant="h3">
                       first name
                     </Typography>
                   }
@@ -163,7 +164,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                     shrink: true,
                   }}
                   InputProps={{
-                    classes: { input: classes.textFieldBoxItems },
+                    classes: { input: classes.inputs },
                     disableUnderline: true,
                   }}
                   name="firstName"
@@ -176,7 +177,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                 <TextField
                   id="lastName"
                   label={
-                    <Typography className={classes.textFieldTitle} variant="h3">
+                    <Typography className={classes.label} variant="h3">
                       last name
                     </Typography>
                   }
@@ -186,7 +187,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                     shrink: true,
                   }}
                   InputProps={{
-                    classes: { input: classes.textFieldBoxItems },
+                    classes: { input: classes.inputs },
                     disableUnderline: true,
                   }}
                   name="lastName"
@@ -197,11 +198,11 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                   placeholder="Doe"
                   onChange={handleChange}
                 />
-                <Field
+                <TextField
                   id="gender"
-                  as="select"
+                  select
                   label={
-                    <Typography className={classes.textFieldTitle} variant="h3">
+                    <Typography className={classes.label} variant="h3">
                       gender
                     </Typography>
                   }
@@ -209,15 +210,23 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                   value={values.gender}
                   onChange={handleChange}
                 >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                  <option value="prefer not to say">Prefer not to say</option>
-                </Field>
+                  <option className={classes.label} value="Male">
+                    Male
+                  </option>
+                  <option className={classes.label} value="Female">
+                    Female
+                  </option>
+                  <option className={classes.label} value="Other">
+                    Other
+                  </option>
+                  <option className={classes.label} value="prefer not to say">
+                    Prefer not to say
+                  </option>
+                </TextField>
                 <TextField
                   id="email"
                   label={
-                    <Typography className={classes.textFieldTitle} variant="h3">
+                    <Typography className={classes.label} variant="h3">
                       email
                     </Typography>
                   }
@@ -227,7 +236,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                     shrink: true,
                   }}
                   InputProps={{
-                    classes: { input: classes.textFieldBoxItems },
+                    classes: { input: classes.inputs },
                     disableUnderline: true,
                   }}
                   name="email"
@@ -240,7 +249,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                 <TextField
                   id="phoneNumber"
                   label={
-                    <Typography className={classes.textFieldTitle} variant="h3">
+                    <Typography className={classes.label} variant="h3">
                       phone number
                     </Typography>
                   }
@@ -250,7 +259,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                     shrink: true,
                   }}
                   InputProps={{
-                    classes: { input: classes.textFieldBoxItems },
+                    classes: { input: classes.inputs },
                     disableUnderline: true,
                   }}
                   name="phoneNumber"
@@ -263,7 +272,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                 <TextField
                   id="address"
                   label={
-                    <Typography className={classes.textFieldTitle} variant="h3">
+                    <Typography className={classes.label} variant="h3">
                       address
                     </Typography>
                   }
@@ -273,7 +282,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                     shrink: true,
                   }}
                   InputProps={{
-                    classes: { input: classes.textFieldBoxItems },
+                    classes: { input: classes.inputs },
                     disableUnderline: true,
                   }}
                   name="address"
@@ -286,7 +295,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                 <TextField
                   id="description"
                   label={
-                    <Typography className={classes.textFieldTitle} variant="h3">
+                    <Typography className={classes.label} variant="h3">
                       description
                     </Typography>
                   }
@@ -296,7 +305,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
                     shrink: true,
                   }}
                   InputProps={{
-                    classes: { input: classes.textFieldBoxItems },
+                    classes: { input: classes.inputs },
                     disableUnderline: true,
                   }}
                   name="description"
@@ -315,7 +324,7 @@ export default function EditProfile({ loggedInUser }: Props): JSX.Element {
             )}
           </Formik>
         )}
-      </Grid>
+      </Paper>
     </Grid>
   );
 }

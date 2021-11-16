@@ -8,14 +8,20 @@ export const theme = createMuiTheme({
       textTransform: 'none',
       fontWeight: 700,
     },
+    h1: {
+      fontSize: 24,
+      fontWeight: 700,
+      fontFamily: '"sans-serif"',
+    },
     h3: {
-      fontSize: '1rem',
+      fontSize: 12,
       fontWeight: 700,
       fontFamily: '"sans-serif"',
     },
   },
   palette: {
     primary: { main: '#ED3F3F' },
+    secondary: { main: '#5BC431' },
     text: { primary: '#000000' },
   },
   shape: {

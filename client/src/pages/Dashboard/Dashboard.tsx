@@ -7,6 +7,7 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import EditProfile from '../User/EditProfile/EditProfile';
+import AuthMenu from '../../components/AuthMenu/AuthMenu';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -28,7 +29,7 @@ export default function Dashboard(): JSX.Element {
   }
 
   return (
-    <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
+    <Grid container component="main" className={`${classes.root}`}>
       <CssBaseline />
       <Grid item className={classes.drawerWrapper}>
         <EditProfile loggedInUser={loggedInUser} />

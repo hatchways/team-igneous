@@ -1,10 +1,11 @@
 import { useState, MouseEvent } from 'react';
 import IconButton from '@material-ui/core/IconButton';
+import { Badge } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useAuth } from '../../context/useAuthContext';
 import { useHistory } from 'react-router-dom';
-import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
+import { Avatar } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import useStyles from './useStyles';
 import Logo from '../../Images/logo.png';
@@ -35,13 +36,27 @@ const AuthMenu = (): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <div>
-      <IconButton aria-label="show auth menu" aria-controls="auth-menu" aria-haspopup="true" onClick={handleClick}>
-        {!!loggedInUser && <AvatarDisplay loggedIn user={loggedInUser} />}
+    <div className={classes.navBar}>
+      <IconButton
+        aria-label="show auth menu"
+        aria-controls="auth-menu"
+        aria-haspopup="true"
+        className={classes.navAvatar}
+        onClick={handleClick}
+      >
+        {!!loggedInUser && (
+          <Avatar
+            alt="Profile Image"
+            className={classes.navAvatar}
+            src={`https://robohash.org/${loggedInUser.email}.png`}
+          />
+        )}
       </IconButton>
-      <img src={Logo} alt="logo" />
-      <Link to="/user/messages" className={classes.link}>
-        Messages
+      <img src={Logo} alt="logo" className={classes.logo} />
+      <Link to="/user/messages" className={classes.navLink}>
+        <Badge badgeContent={true} color="secondary" className={classes.notification}>
+          Messages
+        </Badge>
       </Link>
       <Menu
         id="auth-menu"
