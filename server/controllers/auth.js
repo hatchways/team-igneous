@@ -24,28 +24,33 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
   }
   const firstName = username;
   const lastName = '';
+  const gender = '';
+  const phoneNumber = '';
+  const address = '';
   const description = '';
-  const availability = false;
+
   const profile = await Profile.create({
     firstName,
     lastName,
+    gender,
+    email,
+    phoneNumber,
+    address,
     description,
-    availability,
   });
 
   const user = await User.create({
     username,
     email,
     password,
-    profile,
   });
 
-  user.profile = profile._id;
 
-  if (user) {
+  if (user && profile) {
     const token = generateToken(user._id);
     const secondsInWeek = 604800;
-
+    user.profile = profile._id;
+    user.save()
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
@@ -57,6 +62,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
           id: user._id,
           username: user.username,
           email: user.email,
+          profile: user.profile,
         },
       },
     });
@@ -89,6 +95,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
           id: user._id,
           username: user.username,
           email: user.email,
+          profile: user.profile,
         },
       },
     });
@@ -115,6 +122,7 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
         id: user._id,
         username: user.username,
         email: user.email,
+        profile: user.profile,
       },
     },
   });

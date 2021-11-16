@@ -29,11 +29,10 @@ export default function Dashboard(): JSX.Element {
   }
 
   return (
-    <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
+    <Grid container component="main" className={`${classes.root}`}>
       <CssBaseline />
-      <AuthMenu />
       <Grid item className={classes.drawerWrapper}>
-        <EditProfile />
+        <EditProfile loggedInUser={loggedInUser} />
       </Grid>
     </Grid>
   );

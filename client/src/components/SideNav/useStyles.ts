@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   sideBar: {
-    display: 'flex',
+    display: 'inline-block',
+    width: '25%',
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'column',
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     textDecoration: 'none',
     marginTop: '2rem',
+    marginLeft: '2rem',
     fontSize: '1rem',
     fontFamily: '"Open Sans", "sans-serif", "Roboto"',
     fontWeight: 700,

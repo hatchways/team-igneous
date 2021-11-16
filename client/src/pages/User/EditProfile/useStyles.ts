@@ -1,26 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    padding: '8rem 10rem 2rem 5rem',
-  },
+const useStyles = makeStyles((theme) => ({
+  root: {},
   sideBar: {
     flexDirection: 'column',
     color: 'grey',
   },
   content: {
-    display: 'flex',
+    display: 'inline-block',
+    width: '60%',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: -1,
     overflow: 'hidden',
+    margin: '20px auto',
   },
-  innerContentContainer: {
-    display: 'flex',
-  },
+  innerContentContainer: {},
   link: {
     textDecoration: 'none',
     fontSize: '1rem',
@@ -46,23 +40,46 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
   },
   title: {
+    fontSize: 24,
+    fontWeight: 700,
+    fontFamily: theme.typography.fontFamily,
+    textAlign: 'center',
+  },
+  form: {
+    width: '60%',
+    margin: '20px auto',
+  },
+  label: {
+    fontSize: 19,
     color: 'black',
-    margin: '2rem',
+    fontWeight: 'bold',
+    paddingLeft: '5px',
+    textTransform: 'uppercase',
+  },
+  inputs: {
+    marginTop: '.8rem',
+    height: '2rem',
+    padding: '12px',
+    border: '1px solid lightgrey',
+    borderRadius: '5px',
+  },
+  select: {
+    marginTop: '.8rem',
+    height: '2rem',
+    padding: '12px',
+    border: '1px solid lightgrey',
+    borderRadius: '5px',
   },
   textFieldBox: {
     marginBottom: '1rem',
-    display: 'flex',
-    flexWrap: 'nowrap',
-    justifyContent: 'flex-end',
+    display: 'inline-block',
   },
   textFieldTitle: {
     textTransform: 'uppercase',
     minWidth: '30%',
     paddingRight: '1rem',
     marginTop: '1.3rem',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    overflow: 'hidden',
+    display: 'inline-block',
   },
   dropDownDateContainer: {
     minWidth: '80%',
@@ -132,6 +149,9 @@ const useStyles = makeStyles(() => ({
   saveButtonBox: {
     display: 'flex',
     justifyContent: 'center',
+  },
+  circle: {
+    background: 'blue',
   },
 }));
 

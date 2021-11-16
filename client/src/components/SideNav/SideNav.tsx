@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 export default function SideNav(): JSX.Element {
   const classes = useStyles();
   return (
-    <Grid item xs={2} sm={2} md={2} lg={2} xl={2} container component={Paper} className={classes.sideBar}>
+    <Paper className={classes.sideBar}>
       <NavLink exact to="/user/edit-profile" className={classes.link} activeClassName={classes.activeLink}>
         Edit Profile
       </NavLink>
@@ -25,6 +25,6 @@ export default function SideNav(): JSX.Element {
       <NavLink exact to="/user/settings" className={classes.link} activeClassName={classes.activeLink}>
         Settings
       </NavLink>
-    </Grid>
+    </Paper>
   );
 }
