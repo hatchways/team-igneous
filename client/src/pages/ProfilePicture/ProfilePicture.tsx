@@ -1,5 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import useStyles from './useStyles';
 import AuthMenu from '../../components/AuthMenu/AuthMenu';
 import Grid from '@material-ui/core/Grid';
@@ -10,17 +9,18 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
+import uploadImage from '../../helpers/APICalls/uploadImage';
 
 export default function ProfilePicture(): JSX.Element {
   const classes = useStyles();
-  const [fileInputState, setFileInputState] = useState('');
-  const [selectedFile, setSelectedFile] = useState('');
+  const [fileInput, setFileInput] = useState<File>();
   const [previewImage, setPreviewImage] = useState('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     const image: File = (target.files as FileList)[0];
     profileImage(image);
+    setFileInput(image);
   };
 
   const profileImage = (image: File) => {
@@ -30,6 +30,12 @@ export default function ProfilePicture(): JSX.Element {
       const result = reader.result as string;
       setPreviewImage(result);
     };
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!fileInput) return;
+    await uploadImage(fileInput);
   };
 
   return (
@@ -65,16 +71,15 @@ export default function ProfilePicture(): JSX.Element {
               </Typography>
             </Grid>
             <Grid item container className={classes.uploadButtonContainer}>
-              <form>
+              <form method="post" action="/imageUpload" onSubmit={handleSubmit} encType="multipart/form-data">
                 <input
                   className={classes.uploadInput}
                   id="fileInput"
-                  name="fileInput"
+                  name="picture"
                   type="file"
                   onChange={handleChange}
-                  value={fileInputState}
                 />
-                <Button>Upload a file from your device</Button>
+                <button type="submit">Upload a file from your device</button>
               </form>
             </Grid>
             <Grid item container className={classes.deleteButtonContainer}>
