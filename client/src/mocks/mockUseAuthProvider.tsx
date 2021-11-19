@@ -14,6 +14,6 @@ const MockUseAuthProvider: FunctionComponent = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}; 
 
 export default MockUseAuthProvider;
