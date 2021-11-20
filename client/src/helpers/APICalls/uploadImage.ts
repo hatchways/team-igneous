@@ -1,12 +1,12 @@
 import { AuthApiData } from '../../interface/AuthApiData';
 
-const uploadImage = async (base64EncodedImage: File): Promise<AuthApiData> => {
+const uploadImage = async (Image: File): Promise<AuthApiData> => {
   const data = new FormData();
-  data.append('picture', base64EncodedImage);
+  data.append('uploads', Image);
 
   const fetchOptions = {
     method: 'POST',
-    body: base64EncodedImage,
+    body: data,
   };
 
   return await fetch(`/imageUpload`, fetchOptions)
