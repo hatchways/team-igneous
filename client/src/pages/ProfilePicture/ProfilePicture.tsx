@@ -1,11 +1,11 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import useStyles from './useStyles';
 import AuthMenu from '../../components/AuthMenu/AuthMenu';
 import Grid from '@material-ui/core/Grid';
 import SideNav from '../../components/SideNav/SideNav';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -16,7 +16,7 @@ export default function ProfilePicture(): JSX.Element {
   const [fileInput, setFileInput] = useState<File>();
   const [previewImage, setPreviewImage] = useState('');
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     const image: File = (target.files as FileList)[0];
     profileImage(image);
@@ -71,11 +71,11 @@ export default function ProfilePicture(): JSX.Element {
               </Typography>
             </Grid>
             <Grid item container className={classes.uploadButtonContainer}>
-              <form method="post" action="/imageUpload" onSubmit={handleSubmit} encType="multipart/form-data">
+              <form method="POST" action="/imageUpload" onSubmit={handleSubmit} encType="multipart/form-data">
                 <input
                   className={classes.uploadInput}
                   id="fileInput"
-                  name="picture"
+                  name="uploads"
                   type="file"
                   onChange={handleChange}
                 />
