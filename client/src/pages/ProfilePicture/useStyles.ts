@@ -82,16 +82,19 @@ const useStyles = makeStyles(() => ({
     fontSize: '1rem',
     fontFamily: 'sans-serif',
     height: '4rem',
-    width: '30%',
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'transparent',
     '&:hover': {
       backgroundColor: 'transparent',
     },
   },
+  label: {},
+  submitButton: {
+    display: 'none',
+  },
   uploadInput: {
-    display: 'flex',
+    display: 'none',
   },
   deleteButtonContainer: {
     display: 'flex',

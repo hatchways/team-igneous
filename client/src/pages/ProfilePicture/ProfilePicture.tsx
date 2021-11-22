@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import useStyles from './useStyles';
 import AuthMenu from '../../components/AuthMenu/AuthMenu';
@@ -5,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import SideNav from '../../components/SideNav/SideNav';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-//import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,12 +16,22 @@ export default function ProfilePicture(): JSX.Element {
   const classes = useStyles();
   const [fileInput, setFileInput] = useState<File>();
   const [previewImage, setPreviewImage] = useState('');
+  const componentRef = React.useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!fileInput) return;
+    await uploadImage(fileInput);
+  };
 
   const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     const image: File = (target.files as FileList)[0];
     profileImage(image);
     setFileInput(image);
+    if (null !== componentRef.current) {
+      componentRef.current?.submit();
+    }
   };
 
   const profileImage = (image: File) => {
@@ -30,12 +41,6 @@ export default function ProfilePicture(): JSX.Element {
       const result = reader.result as string;
       setPreviewImage(result);
     };
-  };
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!fileInput) return;
-    await uploadImage(fileInput);
   };
 
   return (
@@ -71,7 +76,14 @@ export default function ProfilePicture(): JSX.Element {
               </Typography>
             </Grid>
             <Grid item container className={classes.uploadButtonContainer}>
-              <form method="POST" action="/imageUpload" onSubmit={handleSubmit} encType="multipart/form-data">
+              <form
+                method="POST"
+                action="/imageUpload"
+                id="upload-Image-Form"
+                ref={componentRef}
+                onSubmit={handleSubmit}
+                encType="multipart/form-data"
+              >
                 <input
                   className={classes.uploadInput}
                   id="fileInput"
@@ -79,7 +91,12 @@ export default function ProfilePicture(): JSX.Element {
                   type="file"
                   onChange={handleChange}
                 />
-                <button type="submit">Upload a file from your device</button>
+                <label htmlFor="fileInput" className={classes.label}>
+                  <Button variant="contained" component="span" className={classes.uploadButton}>
+                    Upload a file from your device
+                  </Button>
+                </label>
+                <button type="submit" className={classes.submitButton}></button>
               </form>
             </Grid>
             <Grid item container className={classes.deleteButtonContainer}>
