@@ -18,20 +18,18 @@ export default function ProfilePicture(): JSX.Element {
   const [previewImage, setPreviewImage] = useState('');
   const componentRef = React.useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!fileInput) return;
-    await uploadImage(fileInput);
+    uploadImage(fileInput);
   };
 
   const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
     const image: File = (target.files as FileList)[0];
     profileImage(image);
-    setFileInput(image);
-    if (null !== componentRef.current) {
-      componentRef.current?.submit();
-    }
+    await setFileInput(image);
+    componentRef.current?.requestSubmit();
   };
 
   const profileImage = (image: File) => {
