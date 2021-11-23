@@ -1,3 +1,5 @@
+import React from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import useStyles from './useStyles';
 import AuthMenu from '../../components/AuthMenu/AuthMenu';
 import Grid from '@material-ui/core/Grid';
@@ -8,9 +10,39 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import uploadImage from '../../helpers/APICalls/uploadImage';
 
 export default function ProfilePicture(): JSX.Element {
   const classes = useStyles();
+  const [fileInput, setFileInput] = useState<File>();
+  const [previewImage, setPreviewImage] = useState('');
+  const componentRef = React.useRef<HTMLFormElement>(null);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!fileInput) return;
+    uploadImage(fileInput);
+  };
+
+  const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
+    const image: File = (target.files as FileList)[0];
+    profileImage(image);
+    await setFileInput(image);
+    componentRef.current?.requestSubmit();
+  };
+
+  const profileImage = (image: File) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      setPreviewImage(result);
+    };
+  };
+
   return (
     <Box className={classes.outsideContainer}>
       <AuthMenu />
@@ -34,8 +66,8 @@ export default function ProfilePicture(): JSX.Element {
                 Profile Picture
               </Typography>
             </Grid>
-            <Grid item container className={classes.profileImageContainer}>
-              <img src="" className={classes.profileImage}></img>
+            <Grid item container className={classes.previewImageContainer}>
+              {previewImage && <img src={previewImage} className={classes.previewImage}></img>}
             </Grid>
             <Grid item container className={classes.tipContainer}>
               <Typography variant="h6" className={classes.tip}>
@@ -44,9 +76,28 @@ export default function ProfilePicture(): JSX.Element {
               </Typography>
             </Grid>
             <Grid item container className={classes.uploadButtonContainer}>
-              <Button variant="text" className={classes.uploadButton}>
-                Upload a file from your device
-              </Button>
+              <form
+                method="POST"
+                action="/imageUpload"
+                id="upload-Image-Form"
+                ref={componentRef}
+                onSubmit={handleSubmit}
+                encType="multipart/form-data"
+              >
+                <TextField
+                  className={classes.uploadInput}
+                  id="fileInput"
+                  name="uploads"
+                  type="file"
+                  onChange={handleChange}
+                />
+                <InputLabel htmlFor="fileInput" className={classes.label}>
+                  <Button variant="contained" component="span" className={classes.uploadButton}>
+                    Upload a file from your device
+                  </Button>
+                </InputLabel>
+                <Button type="submit" className={classes.submitButton}></Button>
+              </form>
             </Grid>
             <Grid item container className={classes.deleteButtonContainer}>
               <IconButton className={classes.deleteButton}>

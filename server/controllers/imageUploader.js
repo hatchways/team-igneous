@@ -3,15 +3,14 @@ const fs = require("fs");
 
 const imageUpload = async (req, res) => {
   const uploader = async (path) => await cloudinary.uploads(path, "samples");
-
   if (req.method === "POST") {
+    const files = [req.file]
     const urls = [];
-    const files = req.files;
     for (const file of files) {
-      const path = file.path;
-      const newPath = await uploader(path);
-      urls.push(newPath);
-      fs.unlinkSync(path);
+      const path = file.path;           
+      const newPath = await uploader(path); 
+      urls.push(newPath);                     
+      fs.unlinkSync(path);                   
     }
 
     res.status(200).json({

@@ -20,7 +20,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: -1,
     overflow: 'hidden',
   },
   innerContentContainer: {
@@ -37,7 +36,7 @@ const useStyles = makeStyles(() => ({
     color: 'black',
     margin: '2rem',
   },
-  profileImageContainer: {
+  previewImageContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -46,11 +45,11 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '2rem',
     border: 'none',
   },
-  profileImage: {
+  previewImage: {
     position: 'relative',
     display: 'flex',
-    height: '10rem',
-    width: '10rem',
+    height: '15rem',
+    width: '15rem',
     border: '0.15rem solid',
     borderRadius: '50%',
   },
@@ -75,19 +74,26 @@ const useStyles = makeStyles(() => ({
   },
   uploadButton: {
     border: '0.15rem solid',
+    borderRadius: '0.3rem',
     borderColor: 'red',
     color: 'red',
     fontWeight: 700,
     fontSize: '1rem',
     fontFamily: 'sans-serif',
     height: '4rem',
-    width: '30%',
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'transparent',
     '&:hover': {
       backgroundColor: 'transparent',
     },
+  },
+  label: {},
+  submitButton: {
+    display: 'none',
+  },
+  uploadInput: {
+    display: 'none',
   },
   deleteButtonContainer: {
     display: 'flex',

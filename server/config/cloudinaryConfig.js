@@ -2,7 +2,6 @@ const cloudinary = require("cloudinary");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const cloudinaryConfig = () =>
   cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -20,7 +19,7 @@ exports.uploads = (file, folder) => {
         });
       },
       {
-        resoulce_type: "auto",
+        resource_type: "auto",
         folder: folder,
       }
     );

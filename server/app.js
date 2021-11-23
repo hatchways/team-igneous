@@ -49,7 +49,7 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/profile", profileRouter);
 app.use("/:userId", requestRouter);
-app.use("/imageUpload", upload.array("picture"), imageRouter);
+app.use("/imageUpload", upload.single("uploads"), imageRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
