@@ -12,7 +12,7 @@ const uploadImage = async (Image: File): Promise<AuthApiData> => {
   return await fetch(`/imageUpload`, fetchOptions)
     .then((res) => res.json())
     .catch((err) => {
-      console.log('UPLOADIMAGE-ERROR: ', err);
+      console.error('UPLOADIMAGE-ERROR: ', err);
     });
 };
 

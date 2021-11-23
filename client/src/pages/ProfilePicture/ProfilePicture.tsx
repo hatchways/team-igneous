@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import DeleteIcon from '@material-ui/icons/Delete';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
 import uploadImage from '../../helpers/APICalls/uploadImage';
 
 export default function ProfilePicture(): JSX.Element {
@@ -82,23 +84,22 @@ export default function ProfilePicture(): JSX.Element {
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
               >
-                <input
+                <TextField
                   className={classes.uploadInput}
                   id="fileInput"
                   name="uploads"
                   type="file"
                   onChange={handleChange}
                 />
-                <label htmlFor="fileInput" className={classes.label}>
+                <InputLabel htmlFor="fileInput" className={classes.label}>
                   <Button variant="contained" component="span" className={classes.uploadButton}>
                     Upload a file from your device
                   </Button>
-                </label>
-                <button type="submit" className={classes.submitButton}></button>
+                </InputLabel>
+                <Button type="submit" className={classes.submitButton}></Button>
               </form>
             </Grid>
             <Grid item container className={classes.deleteButtonContainer}>
-              {/*this is going to remove from the cloud*/}
               <IconButton className={classes.deleteButton}>
                 <DeleteIcon className={classes.deleteButtonIcon} />
                 Delete photo

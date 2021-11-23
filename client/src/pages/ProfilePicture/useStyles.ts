@@ -20,7 +20,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    // zIndex: -1,
     overflow: 'hidden',
   },
   innerContentContainer: {
